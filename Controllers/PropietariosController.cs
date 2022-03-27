@@ -18,9 +18,8 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
         // GET: Propietarios
         public ActionResult Index()
         {
-          var lista= repositorio.ObtenerTodos();
-          
-            return View(lista);
+          var lista= repositorio.ObtenerTodos();       
+          return View(lista);
         }
 
         // GET: Propietarios/Details/5
@@ -44,7 +43,7 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
             {
               int res= repositorio.Alta(p);
               if (res>0) {
-                return RedirectToAction(nameof(Index));
+              return RedirectToAction(nameof(Index));
               }
               else
                return View();
@@ -85,7 +84,7 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
           Propietario ? propEdit= null;
             try
             {
-                // TODO: Add update logic here
+               
                 propEdit = repositorio.ObtenerPorId(id);
                 propEdit.Nombre=p.Nombre;
                 propEdit.Apellido=p.Apellido;
@@ -132,6 +131,7 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
             }
             catch (Exception e)
             {
+              Console.WriteLine(e);
               throw;
                 // return View();
             }
