@@ -1,18 +1,22 @@
 using MySql.Data.MySqlClient;
 using Zanche_Martin_InmobiliariaULP.Models;
 
-namespace Zanche_Martin_InmobiliariaULi.Models;
+namespace Zanche_Martin_InmobiliariaULP;
 
-public class RepositorioInquilino{
-  string ConnectionString="Server=localhost;User=root;Password=;Database=inmozanche;SslMode=none";
-  public RepositorioInquilino()
-  {
+public class RepositorioInquilino : RepositorioBase{
+  // string ConnectionString="Server=localhost;User=root;Password=;Database=inmozanche;SslMode=none";
+  // public RepositorioInquilino()
+  // {
     
-  }
+  // }
+      public RepositorioInquilino(IConfiguration configuration) : base(configuration)
+      {
+        
+      }
   	public IList<Inquilino> ObtenerTodos()
 		{
 			var res = new List<Inquilino>();
-			using (MySqlConnection connection = new MySqlConnection(ConnectionString))
+			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
 				string sql = $"SELECT Id, Nombre, Apellido, Dni, Telefono, Email, Lugar_trabajo,Dni_garante,Nombre_garante,Apellido_garante,Telefono_garante" +
                     $" FROM Inquilinos";
@@ -50,7 +54,7 @@ public class RepositorioInquilino{
     	public int Alta(Inquilino i)
 		{
 			int res = -1;
-			using (MySqlConnection connection = new MySqlConnection(ConnectionString))
+			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
 				string sql = $"INSERT INTO Inquilinos (Nombre, Apellido, Dni, Telefono, Email, Lugar_Trabajo, Dni_Garante, Nombre_Garante, Apellido_Garante, Telefono_Garante) " +
 					$"VALUES (@{nameof(i.Nombre)}, @{nameof(i.Apellido)}, @{nameof(i.Dni)}, @{nameof(i.Telefono)}, @{nameof(i.Email)}, @{nameof(i.Lugar_Trabajo)},@{nameof(i.Dni_Garante)}, @{nameof(i.Nombre_Garante)} ,@{nameof(i.Apellido_Garante)}, @{nameof(i.Telefono_Garante)} );" +
@@ -81,7 +85,7 @@ public class RepositorioInquilino{
     	public int Modificacion(Inquilino i)
 		{
 			int res = -1;
-			using (MySqlConnection connection = new MySqlConnection(ConnectionString))
+			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
 				string sql = $"UPDATE Inquilinos SET Nombre=@nombre, Apellido=@apellido, Dni=@dni, Telefono=@telefono, Email=@email, Lugar_Trabajo=@lugar_trabajo, Dni_Garante=@dni_garante, Nombre_Garante=@nombre_garante, Apellido_Garante=@apellido_garante, Telefono_Garante=@telefono_garante " +
 					$"WHERE Id = @id";        
@@ -109,10 +113,10 @@ public class RepositorioInquilino{
 		}
 
     
-  	public Inquilino ObtenerPorId(int id)
+  	public Inquilino? ObtenerPorId(int id)
 		{
-			Inquilino  ? i = null;
-			using (MySqlConnection connection = new MySqlConnection(ConnectionString))
+			Inquilino? i = null;
+			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
 				string sql = $"SELECT Id, Nombre, Apellido, Dni, Telefono, Email, Lugar_trabajo,Dni_garante,Nombre_garante,Apellido_garante,Telefono_garante " +
                     $" FROM Inquilinos" + $" WHERE id=@id";
@@ -148,7 +152,7 @@ public class RepositorioInquilino{
 public int Baja(int id)
 		{
 			int res = -1;
-			using (MySqlConnection connection = new MySqlConnection(ConnectionString))
+			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
 				string sql = $"DELETE FROM Inquilinos WHERE Id = @id";
 				using (MySqlCommand command = new MySqlCommand(sql, connection))

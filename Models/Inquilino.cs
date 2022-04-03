@@ -21,6 +21,7 @@ public class Inquilino
   [Required,EmailAddress]
  public string? Email { get ;set; }
  [Display(Name= "Lugar de trabajo")]
+ [Required]
  public string ? Lugar_Trabajo { get; set; }
  [Display(Name= "DNI Garante")]
 public string ? Dni_Garante { get; set; }

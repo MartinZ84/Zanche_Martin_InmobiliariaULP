@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Zanche_Martin_InmobiliariaULi.Models;
+// using Zanche_Martin_InmobiliariaULi.Models;
 using Zanche_Martin_InmobiliariaULP.Models;
 
 namespace Zanche_Martin_InmobiliariaULP.Controllers
@@ -12,9 +12,9 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
     public class InquilinosController : Controller
     {
       RepositorioInquilino repositorio;
-      public InquilinosController()
+      public InquilinosController(IConfiguration config)
       {
-        repositorio = new RepositorioInquilino();
+        repositorio = new RepositorioInquilino(config);
       }
         // GET: Inquilinos
         public ActionResult Index()
@@ -78,18 +78,19 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, Inquilino i )
         {
-            Inquilino ? inquilinoEdit= null;
+            // Inquilino? inquilinoEdit;
             try
             {
-              inquilinoEdit = repositorio.ObtenerPorId(id);
-              inquilinoEdit.Nombre=i.Nombre;
-              inquilinoEdit.Apellido=i.Apellido;
-              inquilinoEdit.Dni=i.Dni;
-              inquilinoEdit.Email=i.Email;
-              inquilinoEdit.Lugar_Trabajo=i.Lugar_Trabajo;
-              inquilinoEdit.Nombre_Garante=i.Nombre_Garante;
-              inquilinoEdit.Apellido_Garante=i.Apellido_Garante;
-              inquilinoEdit.Telefono_Garante=i.Telefono_Garante;
+              // inquilinoEdit = repositorio.ObtenerPorId(id);
+            // var inq=  inquilinoEdit as Inquilino;
+            //   inq.Nombre=i.Nombre;
+            //   inq.Apellido=i.Apellido;
+            //   inq.Dni=i.Dni;
+            //   inq.Email=i.Email;
+            //   inq.Lugar_Trabajo=i.Lugar_Trabajo;
+            //   inq.Nombre_Garante=i.Nombre_Garante;
+            //   inq.Apellido_Garante=i.Apellido_Garante;
+            //   inq.Telefono_Garante=i.Telefono_Garante;
               repositorio.Modificacion(i);
               TempData["Mensaje"] = "Datos guardados correctamente";
               return RedirectToAction(nameof(Index));

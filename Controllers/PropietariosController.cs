@@ -11,9 +11,9 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
     public class PropietariosController : Controller
     {
       RepositorioPropietario repositorio;
-      public PropietariosController()
+      public PropietariosController(IConfiguration config)
       {
-        repositorio = new RepositorioPropietario();
+        repositorio = new RepositorioPropietario(config);
       }
         // GET: Propietarios
         public ActionResult Index()
@@ -81,15 +81,15 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, Propietario p)
         {
-          Propietario ? propEdit= null;
+          // Propietario ? propEdit= null;
             try
             {
                
-                propEdit = repositorio.ObtenerPorId(id);
-                propEdit.Nombre=p.Nombre;
-                propEdit.Apellido=p.Apellido;
-                propEdit.Dni=p.Dni;
-                propEdit.Email=p.Email;
+                // propEdit = repositorio.ObtenerPorId(id);
+                // propEdit.Nombre=p.Nombre;
+                // propEdit.Apellido=p.Apellido;
+                // propEdit.Dni=p.Dni;
+                // propEdit.Email=p.Email;
                 repositorio.Modificacion(p);
                 TempData["Mensaje"] = "Datos guardados correctamente";
 

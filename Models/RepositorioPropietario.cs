@@ -2,16 +2,16 @@ using MySql.Data.MySqlClient;
 
 namespace Zanche_Martin_InmobiliariaULP.Models;
 
-public class RepositorioPropietario{
-  string ConnectionString="Server=localhost;User=root;Password=;Database=inmozanche;SslMode=none";
-  public RepositorioPropietario()
+public class RepositorioPropietario : RepositorioBase{
+  // string connectionString="Server=localhost;User=root;Password=;Database=inmozanche;SslMode=none";
+  public RepositorioPropietario(IConfiguration configuration) : base(configuration)
   {
     
   }
   	public IList<Propietario> ObtenerTodos()
 		{
 			var res = new List<Propietario>();
-			using (MySqlConnection connection = new MySqlConnection(ConnectionString))
+			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
 				string sql = $"SELECT Id, Nombre, Apellido, Dni, Telefono, Email" +
                     $" FROM Propietarios";
@@ -43,7 +43,7 @@ public class RepositorioPropietario{
     	public int Alta(Propietario p)
 		{
 			int res = -1;
-			using (MySqlConnection connection = new MySqlConnection(ConnectionString))
+			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
 				string sql = $"INSERT INTO Propietarios (Nombre, Apellido, Dni, Telefono, Email) " +
 					$"VALUES (@{nameof(p.Nombre)}, @{nameof(p.Apellido)}, @{nameof(p.Dni)}, @{nameof(p.Telefono)}, @{nameof(p.Email)});" +
@@ -69,7 +69,7 @@ public class RepositorioPropietario{
     	public int Modificacion(Propietario p)
 		{
 			int res = -1;
-			using (MySqlConnection connection = new MySqlConnection(ConnectionString))
+			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
 				string sql = $"UPDATE Propietarios SET Nombre=@nombre, Apellido=@apellido, Dni=@dni, Telefono=@telefono, Email=@email " +
 					$"WHERE Id = @id";        
@@ -92,10 +92,10 @@ public class RepositorioPropietario{
 		}
 
     
-  	public Propietario ObtenerPorId(int id)
+  	public Propietario? ObtenerPorId(int id)
 		{
-			Propietario  ? p = null;
-			using (MySqlConnection connection = new MySqlConnection(ConnectionString))
+			Propietario? p = null;
+			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
 				string sql = $"SELECT Id, Nombre, Apellido, Dni, Telefono, Email" +
                     $" FROM Propietarios" + $" WHERE id=@id";
@@ -126,7 +126,7 @@ public class RepositorioPropietario{
 public int Baja(int id)
 		{
 			int res = -1;
-			using (MySqlConnection connection = new MySqlConnection(ConnectionString))
+			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
 				string sql = $"DELETE FROM Propietarios WHERE Id = @id";
 				using (MySqlCommand command = new MySqlCommand(sql, connection))
