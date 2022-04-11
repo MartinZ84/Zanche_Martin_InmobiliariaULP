@@ -5,7 +5,7 @@
     //Obtengo el id del contrato para no perder la referencia al mismo
     var ContratoId=ViewBag.ContratoId;
     var nroPago= ViewBag.nroPago;
-    @* var fechaActual=ViewBag.fechaActual; *@
+    var importe=ViewBag.importe;
 }
 
 <h1>Realizar pago</h1>
@@ -47,7 +47,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Importe" class="control-label"></label>
-                <input asp-for="Importe" class="form-control" id='fechaActual2' />
+                <input asp-for="Importe" class="form-control" value="@importe"/>
                 <span asp-validation-for="Importe" class="text-danger"></span>
             </div>
         

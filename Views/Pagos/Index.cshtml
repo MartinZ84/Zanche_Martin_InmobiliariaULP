@@ -11,8 +11,9 @@
 <div class="container">
    <div class="row justify-content-between">   
      @Html.ActionLink("Nuevo pago", "Create", new {  id=@ContratoId},new {@class="btn btn-primary col-2"}) 
-      @* <a asp-action="Create" class="btn btn-primary col-2">Nuevo pago</a> *@
-      <a href="#" onClick="history.back();"class="btn btn-secondary col-2">Volver</a>  
+      <a asp-controller="Contratos" asp-action="Index" class="btn btn-secondary col-2">Volver a contratos</a>
+      @* <a asp-action="Index" class="btn btn-primary col-2">Nuevo pago</a> 
+      <a href="#" onClick="history.back();"class="btn btn-secondary col-2">Volver</a>   *@
   </div>
 </div>
 </p>
@@ -64,9 +65,9 @@
                 @Html.DisplayFor(modelItem => item.ContratoId)
             </td>
             <td>
-                @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
-                @Html.ActionLink("Detalles", "Details", new { id=item.Id }) |
-                @Html.ActionLink("Borrar", "Delete", new { id=item.Id })
+                @Html.ActionLink("Editar", "Edit", new {  id=item.Id },new {@class="btn btn-success"}) |
+                @Html.ActionLink("Detalles", "Details", new {  id=item.Id },new {@class="btn btn-warning"}) |
+                @Html.ActionLink("Borrar", "Delete", new {  id=item.Id  }, new {@class="btn btn-danger"})
             </td>
         </tr>
 

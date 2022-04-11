@@ -50,7 +50,8 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
           String fechaActual=DateTime.Now.ToString("dd/MM/yyyy");
           ViewBag.ContratoId = id;
           ViewBag.nroPago= repositorio.ObtenerCantidadPagos(id);
-          // ViewBag.fechaActual= fechaActual;
+          var contrato=repoContrato.ObtenerPorId(id);
+          ViewBag.importe= contrato.Precio;
            return View();
         }
 
@@ -104,14 +105,15 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
             {
                repositorio.Modificacion(pago);
                TempData["Mensaje"] = "Datos guardados correctamente";
-              return RedirectToAction(nameof(Index));
+               return RedirectToAction
+                ("Index", new { id = pago.ContratoId });
             }
                catch(Exception ex)
             {
-                ViewBag.ContratoId = repoContrato.ObtenerPorId(pago.ContratoId);
+                var pay = repositorio.ObtenerPorId(id);
                 ViewBag.Error = ex.Message;
                 ViewBag.StackTrate = ex.StackTrace;
-                return View(pago);
+                return View(pay);
             }
         }
 

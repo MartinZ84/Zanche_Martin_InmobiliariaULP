@@ -90,14 +90,15 @@ namespace Zanche_Martin_InmobiliariaULP{
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
                 string sql = "UPDATE Pagos SET " +
-					"NroPago=@nroPago, FechaPago=@fechaPago, Importe=@impote, ContratoId=@contratoId " +
+					"NroPago=@nroPago, FechaPago=@fechaPago, Importe=@importe, ContratoId=@contratoId " +
 					"WHERE Id = @id";
 				using (MySqlCommand command = new MySqlCommand(sql, connection))
 				{
 					command.Parameters.AddWithValue("@nroPago", pago.NroPago);
 					command.Parameters.AddWithValue("@fechaPago", pago.FechaPago);
           command.Parameters.AddWithValue("@importe",pago.Importe);
-          command.Parameters.AddWithValue("@contratoId", pago.ContratoId);      
+          command.Parameters.AddWithValue("@contratoId", pago.ContratoId);
+           command.Parameters.AddWithValue("@id", pago.Id);
 					connection.Open();
 					res = command.ExecuteNonQuery();
 					connection.Close();
