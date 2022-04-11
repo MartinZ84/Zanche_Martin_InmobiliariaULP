@@ -1,13 +1,16 @@
-@model Zanche_Martin_InmobiliariaULP.Models.Inquilino
+@model Zanche_Martin_InmobiliariaULP.Models.Contrato
 
 @{
-    ViewData["Title"] = "Detalles inquilino";
+    ViewData["Title"] = "Detalles";
+    var Contratos= (IList<Contrato>)ViewBag.Contratos;
+    var Inquilinos= (IList<Inquilino>)ViewBag.Inquilinos;
+    var Inmuebles= (IList<Inmueble>)ViewBag.Inmuebles; 
 }
 
-
+@* <h1>Details</h1> *@
 
 <div>
-    <h4>Inquilino</h4>
+    <h4>Contrato</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -17,42 +20,42 @@
             @Html.DisplayFor(model => model.Id)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nombre)
+            @Html.DisplayNameFor(model => model.FechaInicio)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nombre)
+            @Html.DisplayFor(model => model.FechaInicio)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Apellido)
+            @Html.DisplayNameFor(model => model.FechaFin)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Apellido)
+            @Html.DisplayFor(model => model.FechaFin)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Dni)
+            @Html.DisplayNameFor(model => model.Precio)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Dni)
+            @Html.DisplayFor(model => model.Precio)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Telefono)
+            @Html.DisplayNameFor(model => model.Estado)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Telefono)
+            @Html.DisplayFor(model => model.Estado)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
+            @Html.DisplayNameFor(model => model.InquilinoId)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Email)
+            @Html.DisplayFor(model => model.InquilinoId)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Lugar_Trabajo)
+            @Html.DisplayNameFor(model => model.InmuebleId)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Lugar_Trabajo)
+            @Html.DisplayFor(model => model.InmuebleId)
         </dd>
-        @* <dt class = "col-sm-2">
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Dni_Garante)
         </dt>
         <dd class = "col-sm-10">
@@ -75,10 +78,12 @@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Telefono_Garante)
-        </dd> *@
+        </dd>
     </dl>
 </div>
 <div>
-      @Html.ActionLink("Editar", "Edit", new {  id = Model.Id }, new {@class="btn btn-success"}) | 
-    <a asp-action="Index" class="btn btn-secondary">Volver al listado</a>
+    @Html.ActionLink("Editar", "Edit", new {id = Model.Id }, new {@class="btn btn-success"}) |
+
+    @Html.ActionLink("Pagos", "Index","Pagos", new {  id = Model.Id }, new {@class="btn btn-info"}) | 
+    <a asp-action="Index" class="btn btn-secondary">Volver al Listado</a>
 </div>

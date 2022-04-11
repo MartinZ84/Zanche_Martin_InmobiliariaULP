@@ -1,0 +1,78 @@
+@model IEnumerable<Zanche_Martin_InmobiliariaULP.Models.Pago>
+
+@{
+    ViewData["Title"] = "Pagos";
+    var ContratoId=ViewBag.ContratoId;
+}
+
+<h1>Pagos del contrato N° @ContratoId</h1>
+<hr>
+<p>
+<div class="container">
+   <div class="row justify-content-between">   
+     @Html.ActionLink("Nuevo pago", "Create", new {  id=@ContratoId},new {@class="btn btn-primary col-2"}) 
+      @* <a asp-action="Create" class="btn btn-primary col-2">Nuevo pago</a> *@
+      <a href="#" onClick="history.back();"class="btn btn-secondary col-2">Volver</a>  
+  </div>
+</div>
+</p>
+
+
+@* <p>
+    <a asp-action="Create" class="btn btn-primary">Nuevo pago</a>
+   
+    <a href="#" onClick="history.back();"class="float-right">Volver</a> 
+    
+</p> *@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NroPago)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaPago)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Importe)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContratoId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NroPago)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaPago)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Importe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContratoId)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
+                @Html.ActionLink("Detalles", "Details", new { id=item.Id }) |
+                @Html.ActionLink("Borrar", "Delete", new { id=item.Id })
+            </td>
+        </tr>
+
+}
+    </tbody>
+</table>
+
+
+

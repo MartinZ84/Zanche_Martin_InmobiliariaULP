@@ -127,9 +127,10 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
             }
             catch (Exception ex)
             {
+               var inm = repositorio.ObtenerPorId(id);
                 ViewBag.Error = ex.Message;
                 ViewBag.StackTrate = ex.StackTrace;
-                return View(inmueble);
+                return View(inm);
             }
         }
     }

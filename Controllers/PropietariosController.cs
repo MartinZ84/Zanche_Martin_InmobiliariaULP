@@ -25,7 +25,8 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
         // GET: Propietarios/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+          var propietario= repositorio.ObtenerPorId(id);
+            return View(propietario);
         }
 
         // GET: Propietarios/Create
@@ -108,6 +109,10 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
           try
           {
              var prop = repositorio.ObtenerPorId(id);
+               if (TempData.ContainsKey("Mensaje"))
+                ViewBag.Mensaje = TempData["Mensaje"];
+            if (TempData.ContainsKey("Error"))
+                ViewBag.Error = TempData["Error"];
             return View(prop);            
           }
           catch (Exception e)
@@ -129,10 +134,12 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
                 TempData["Mensaje"] = "Eliminación realizada correctamente";
                 return RedirectToAction(nameof(Index));
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-              Console.WriteLine(e);
-              throw;
+                var prop = repositorio.ObtenerPorId(id);
+                ViewBag.Error = ex.Message;
+                ViewBag.StackTrate = ex.StackTrace;
+                return View(prop);
                 // return View();
             }
         }

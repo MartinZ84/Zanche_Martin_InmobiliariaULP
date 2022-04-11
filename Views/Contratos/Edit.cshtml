@@ -1,0 +1,103 @@
+@model Zanche_Martin_InmobiliariaULP.Models.Contrato
+
+@{
+    ViewData["Title"] = "Contrato - Editar";
+    var Inquilinos= (IList<Inquilino>)ViewBag.Inquilinos;
+    var Inmuebles= (IList<Inmueble>)ViewBag.Inmuebles; 
+}
+
+<h1>Editar</h1>
+
+<h4>Contrato</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control"  disabled/>
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaInicio" class="control-label"></label>
+                <input asp-for="FechaInicio" class="form-control" />
+                <span asp-validation-for="FechaInicio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaFin" class="control-label"></label>
+                <input asp-for="FechaFin" class="form-control" />
+                <span asp-validation-for="FechaFin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Precio" class="control-label"></label>
+                <input asp-for="Precio" class="form-control" />
+                <span asp-validation-for="Precio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Estado" class="control-label"></label>
+                @* <input asp-for="Estado" class="form-control" /> *@
+                  <select asp-for="Estado"  class="form-select"   name="Estado">
+                  <option value="" disabled >Seleccionar estado  </option>
+                  <option value="Vigente">Vigente</option>
+                  <option value="No vigente">No vigente</option>
+                </select>
+                <span asp-validation-for="Estado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InquilinoId" class="control-label"></label>
+                @* <input asp-for="InquilinoId" class="form-control" /> *@
+                <select class="form-select" name="InquilinoId">
+                    @foreach (var item in Inquilinos)
+                    {
+                        @:<option @(item.Id==Model.InquilinoId ? "selected" : "") value="@item.Id">@(item.Nombre + " " + item.Apellido)</option>
+                    }
+                </select>
+                <span asp-validation-for="InquilinoId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InmuebleId" class="control-label"></label>
+                @* <input asp-for="InmuebleId" class="form-control" /> *@
+                <select class="form-select" name="InmuebleId">
+                    @foreach (var item in Inmuebles)
+                    {
+                        @:<option @(item.Id==Model.InmuebleId ? "selected" : "") value="@item.Id">@(item.Id + " " + item.Direccion)</option>
+                    }
+                </select>
+                <span asp-validation-for="InmuebleId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Dni_Garante" class="control-label"></label>
+                <input asp-for="Dni_Garante" class="form-control" />
+                <span asp-validation-for="Dni_Garante" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nombre_Garante" class="control-label"></label>
+                <input asp-for="Nombre_Garante" class="form-control" />
+                <span asp-validation-for="Nombre_Garante" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Apellido_Garante" class="control-label"></label>
+                <input asp-for="Apellido_Garante" class="form-control" />
+                <span asp-validation-for="Apellido_Garante" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Telefono_Garante" class="control-label"></label>
+                <input asp-for="Telefono_Garante" class="form-control" />
+                <span asp-validation-for="Telefono_Garante" class="text-danger"></span>
+            </div>
+            <br>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<br>
+<div>
+    <a asp-action="Index">Volver al listado</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

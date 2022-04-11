@@ -3,6 +3,47 @@
 @{
     ViewData["Title"] = "Eliminar Propietario";
 }
+@*  ALERTAS PERSONALIZADAS DE PANTALLA*@
+		<div class="">
+			@if (ViewBag.Id != null)
+			{//alta exitosa
+				
+			}
+			else if (ViewBag.Mensaje != null)
+			{//cartel general
+				
+			}
+			else if (ViewBag.Error != null)
+      
+
+			{//alta exitosa
+       var error= ViewBag.Error;
+       
+				<div class="alert alert-danger alert-dismissible fade show" role="alert">
+					<strong>¡Error!</strong> No se puede borrar el propietario. Verifique si tiene inmuebles asociados. @*<br> @ViewBag.Error.*@
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true"><span class="lnr lnr-cross-circle"></span></span>
+					</button>
+				</div>
+			}
+			else if (!String.IsNullOrWhiteSpace(ViewBag.Error))
+			{//ocurrió un error
+				<environment names="Development">
+					<div class="alert alert-danger alert-dismissible fade show" role="alert">
+						<strong>¡Error!</strong> Ocurrió: @ViewBag.Error
+						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true"><span class="lnr lnr-cross-circle"></span></span>
+						</button>
+						<a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false"><span class="lnr lnr-plus-circle"></span></a>
+						<div class="collapse multi-collapse" id="multiCollapseExample1">
+							@ViewBag.StackTrace
+						</div>
+					</div>
+				</environment>
+			}			
+		</div>
+@*FIN ALERTAS PERSONALIZADAS*@
+
 
 
 

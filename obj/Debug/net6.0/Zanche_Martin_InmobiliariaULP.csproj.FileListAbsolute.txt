@@ -247,3 +247,4 @@ D:\Facultad ULP Martin\.Net\Zanche_Martin_InmobiliariaULP\obj\Debug\net6.0\refin
 D:\Facultad ULP Martin\.Net\Zanche_Martin_InmobiliariaULP\obj\Debug\net6.0\Zanche_Martin_InmobiliariaULP.pdb
 D:\Facultad ULP Martin\.Net\Zanche_Martin_InmobiliariaULP\obj\Debug\net6.0\Zanche_Martin_InmobiliariaULP.genruntimeconfig.cache
 D:\Facultad ULP Martin\.Net\Zanche_Martin_InmobiliariaULP\obj\Debug\net6.0\ref\Zanche_Martin_InmobiliariaULP.dll
+D:\Facultad ULP Martin\.Net\Zanche_Martin_InmobiliariaULP\bin\Debug\net6.0\dotnet-watch.dll

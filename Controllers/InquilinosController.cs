@@ -108,6 +108,10 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
            try
            {
             var inquilino = repositorio.ObtenerPorId(id);
+              if (TempData.ContainsKey("Mensaje"))
+                ViewBag.Mensaje = TempData["Mensaje"];
+            if (TempData.ContainsKey("Error"))
+                ViewBag.Error = TempData["Error"];
             return View(inquilino);
            }
            catch (Exception e)
@@ -128,10 +132,12 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
               TempData["Mensaje"] = "Eliminación realizada correctamente";
               return RedirectToAction(nameof(Index));
             }
-            catch (Exception e)            
+            catch (Exception ex)            
             {
-              Console.WriteLine(e);
-              return View();
+                var inq = repositorio.ObtenerPorId(id);
+                ViewBag.Error = ex.Message;
+                ViewBag.StackTrate = ex.StackTrace;
+                return View(inq);
             }
         }
     }

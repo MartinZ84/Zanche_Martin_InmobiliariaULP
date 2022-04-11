@@ -16298,8 +16298,18 @@
   "RootNamespace": "Zanche_Martin_InmobiliariaULP",
   "Documents": [
     {
+      "FilePath": "d:\\Facultad ULP Martin\\.Net\\Zanche_Martin_InmobiliariaULP\\Views\\Contratos\\Delete.cshtml",
+      "TargetPath": "Views\\Contratos\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\Facultad ULP Martin\\.Net\\Zanche_Martin_InmobiliariaULP\\Views\\Inquilinos\\Create.cshtml",
       "TargetPath": "Views\\Inquilinos\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Facultad ULP Martin\\.Net\\Zanche_Martin_InmobiliariaULP\\Views\\Pagos\\Edit.cshtml",
+      "TargetPath": "Views\\Pagos\\Edit.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16323,6 +16333,31 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\Facultad ULP Martin\\.Net\\Zanche_Martin_InmobiliariaULP\\Views\\Pagos\\Details.cshtml",
+      "TargetPath": "Views\\Pagos\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Facultad ULP Martin\\.Net\\Zanche_Martin_InmobiliariaULP\\Views\\Pagos\\Index.cshtml",
+      "TargetPath": "Views\\Pagos\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Facultad ULP Martin\\.Net\\Zanche_Martin_InmobiliariaULP\\Views\\Contratos\\Index.cshtml",
+      "TargetPath": "Views\\Contratos\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Facultad ULP Martin\\.Net\\Zanche_Martin_InmobiliariaULP\\Views\\Contratos\\Edit.cshtml",
+      "TargetPath": "Views\\Contratos\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Facultad ULP Martin\\.Net\\Zanche_Martin_InmobiliariaULP\\Views\\Propietarios\\Details.cshtml",
+      "TargetPath": "Views\\Propietarios\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\Facultad ULP Martin\\.Net\\Zanche_Martin_InmobiliariaULP\\Views\\Inquilinos\\Index.cshtml",
       "TargetPath": "Views\\Inquilinos\\Index.cshtml",
       "FileKind": "mvc"
@@ -16333,8 +16368,23 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\Facultad ULP Martin\\.Net\\Zanche_Martin_InmobiliariaULP\\Views\\Pagos\\Delete.cshtml",
+      "TargetPath": "Views\\Pagos\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\Facultad ULP Martin\\.Net\\Zanche_Martin_InmobiliariaULP\\Views\\Inmuebles\\Details.cshtml",
       "TargetPath": "Views\\Inmuebles\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Facultad ULP Martin\\.Net\\Zanche_Martin_InmobiliariaULP\\Views\\Contratos\\Details.cshtml",
+      "TargetPath": "Views\\Contratos\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Facultad ULP Martin\\.Net\\Zanche_Martin_InmobiliariaULP\\Views\\Contratos\\Create.cshtml",
+      "TargetPath": "Views\\Contratos\\Create.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16365,6 +16415,11 @@
     {
       "FilePath": "d:\\Facultad ULP Martin\\.Net\\Zanche_Martin_InmobiliariaULP\\Views\\Inmuebles\\Delete.cshtml",
       "TargetPath": "Views\\Inmuebles\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Facultad ULP Martin\\.Net\\Zanche_Martin_InmobiliariaULP\\Views\\Pagos\\Create.cshtml",
+      "TargetPath": "Views\\Pagos\\Create.cshtml",
       "FileKind": "mvc"
     },
     {
