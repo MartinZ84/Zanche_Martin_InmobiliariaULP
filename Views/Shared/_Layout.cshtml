@@ -7,39 +7,78 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Zanche_Martin_InmobiliariaULP.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/my-login.css" sp-append-version="true">
+  <link rel="stylesheet" href="~/css/bootstrap-social.css" sp-append-version="true">
     <script src="https://kit.fontawesome.com/8ea23c42ca.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
             <div class="container-fluid">
+              
+
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Inmobiliaria MHZ</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
-                        </li>
-                        @* <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li> *@
-                                 <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Propietarios" asp-action="Index">Propietarios</a>
-                        </li>
-                          <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Inquilinos" asp-action="Index">Inquilinos</a>
-                        </li>
-                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Inmuebles" asp-action="Index">Inmuebles</a>
-                        </li>
-                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Contratos" asp-action="Index">Contratos</a>
-                        </li>
-                    </ul>
-                </div>
+                	@if (!User.Identity.IsAuthenticated)
+                      {	
+                      
+                        <a class="btn btn-primary py-2 d-none d-md-inline-block float-right" asp-controller="Usuarios" asp-action="Login"><span class="lnr lnr-enter"></span> Acceder</a>
+                      }
+                      else
+                      {
+                        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                            <ul class="navbar-nav flex-grow-1">
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
+                                </li>
+                                @* <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                                </li> *@
+                                        <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="" asp-controller="Propietarios" asp-action="Index">Propietarios</a>
+                                </li>
+                                  <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="" asp-controller="Inquilinos" asp-action="Index">Inquilinos</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="" asp-controller="Inmuebles" asp-action="Index">Inmuebles</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="" asp-controller="Contratos" asp-action="Index">Contratos</a>
+                                </li>
+                                  @if (User.IsInRole("Administrador") || User.IsInRole("SuperAdministrador"))
+                                {
+                                   <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="" asp-controller="Usuarios" asp-action="Index">Usuarios</a>
+                                </li>
+                                }                              
+                            </ul>
+                          
+                              <div class="text-light mr-6">
+                                <span> Bienvenido @User.Identity.Name  
+                                  @if (User.IsInRole("Administrador"))
+                                {<span class="mx-auto">Rol: Administrador</span>}
+                                else if ( User.IsInRole("SuperAdministrador")){
+                                    <span class="mx-auto">Rol: SuperAdministrador</span>
+                                } else if (User.IsInRole("Empleado"))
+                                {  <span class="mx-auto">Rol: Empleado</span>}
+                              </div>
+                              
+                              <div class="dropdown text-light" >
+                                  <a class="btn btn-primary dropdown-toggle text-light" href="#" role="button" id="userMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent" data-display="static">
+                                    <span class="lnr lnr-user"></span> @User.Identity.Name
+                                  </a>
+
+                                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item text-dark" asp-controller="Usuarios" asp-action="Perfil"><i class="lnr lnr-user"></i> Perfil</a>
+                                    <a class="dropdown-item text-dark" asp-controller="Usuarios" asp-action="Logout"><i class="lnr lnr-exit"></i> Salir</a>
+                                  </div>
+                              </div>                        
+                        </div>
+                      }
             </div>
         </nav>
     </header>
@@ -52,11 +91,11 @@
 
    
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - Zanche Martin unconclude ideas- <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+    	<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+		<div class="container">
+			<span class="text-muted">&copy; @DateTime.Today.Year  Zanche Martin Ideas Inconclusas &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a> <a class="float-right" href="#">Volver arriba</a></span>
+		</div>
+	</footer>
 
 @* //alerts *@
 <script type="text/javascript">
@@ -64,10 +103,37 @@
 			$('.alert').alert();
 		}
 </script>
-
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/my-login.js" sp-append-version="true"></script>
+    <script>
+         $("#checkbox").click(function(){
+        if($("#checkbox").is(":checked")){
+            $("#password").attr("type","text");
+        }else{
+            $("#password").attr("type","password");
+        }
+    });
+
+   
+    @* $(document).ready(function () {
+  //your code here
+ 
+  	return $.ajax({//documentación: https://api.jquery.com/jquery.ajax/
+				url: `@Url.Action("Buscar", "Propietarios")/4`,
+				//method: "GET",
+				//data: {...},
+			}).done(res => {
+				console.log("Búsqueda: ", res);
+			}).fail(res => {
+				console.log("Error: ", res);
+			});
+}); *@
+    </script>
+    
+  
     @await RenderSectionAsync("Scripts", required: false)
+    	@await Html.PartialAsync("_ScriptsPartial")
 </body>
 </html>

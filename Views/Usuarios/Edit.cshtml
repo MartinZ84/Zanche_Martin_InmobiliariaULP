@@ -1,0 +1,116 @@
+@model Zanche_Martin_InmobiliariaULP.Models.Usuario
+
+@{
+    ViewData["Title"] = "Editar";
+}
+
+<h1>Editar</h1>
+<hr>  
+<div class="row justify-content-between">
+  <h4 class="col-2">Usuario</h4> 
+  <a asp-action="Index" class="btn btn-secondary col-2">Volver a usuarios</a>  
+</div>
+<hr>
+<div class="row justify-content-between">
+    <div class="col-12 col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" disabled />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Apellido" class="control-label"></label>
+                <input asp-for="Apellido" class="form-control" />
+                <span asp-validation-for="Apellido" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            @* <div class="form-group">
+                <label asp-for="Clave" class="control-label"></label>
+                <input asp-for="Clave" class="form-control" />
+                <span asp-validation-for="Clave" class="text-danger"></span>
+            </div> *@
+            		@if (User.IsInRole("Administrador") || User.IsInRole("SuperAdministrador"))
+                {
+                  <div class="form-group">
+                    <label class="control-label">Rol</label>
+                    <select class="form-control" name="Rol">
+                      @foreach (var kvp in (IDictionary<int, string>)ViewBag.Roles)
+                      {
+                        @:<option @(kvp.Key == Model.Rol ? "selected" : "") value="@kvp.Key">@kvp.Value</option>
+                      }
+                    </select>
+                    <span asp-validation-for="Rol" class="text-danger"></span>
+                  </div>
+                }
+                    <div class="form-group">
+                <label asp-for="Avatar" class="control-label"></label>
+                @if(String.IsNullOrEmpty(Model.Avatar)){	  <img  class="form-control rounded mx-auto d-block"  src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&f=y" />}
+              else {
+                	<img  class="form-control rounded mx-auto d-block"  src="@Model.Avatar" />
+               }
+                	@* <img src="@Model.Avatar" class="form-control" /> *@
+               
+           
+                <span asp-validation-for="Avatar" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @* <label asp-for="Avatar" class="control-label"></label> *@
+                @* <input asp-for="Avatar" class="form-control" /> *@
+                <span asp-validation-for="Avatar" class="text-danger">Cambiar Avatar</span>
+                   <input type="file" name="AvatarFile" class="form-control" />
+              
+            </div>
+          <br>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>  
+
+  <div class="col-12 col-md-4">
+    <div class="card">
+    
+      <div class="card-body">
+         <h5 class="card-title"> Cambiar password</h5>
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+              <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" disabled />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Clave" class="control-label">Nueva clave</label>
+            
+                <input asp-for="Clave" class="form-control" />
+                <span asp-validation-for="Clave" class="text-danger"></span>
+            </div> 
+            	
+          <br>
+            <div class="form-group">
+                <input type="submit" value="Cambiar" class="btn btn-primary" />
+            </div>
+        </form>
+            </div>
+        </div>
+    </div>
+            
+              
+      </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

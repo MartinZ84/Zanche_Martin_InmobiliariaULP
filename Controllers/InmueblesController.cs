@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,13 +23,27 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
         repoPropietario= new RepositorioPropietario(config);
       }
         // GET: Inmuebles
+         [Authorize(Policy = "Empleado")]
         public ActionResult Index()
         {
              var lista= repositorio.ObtenerTodos();    
             return View(lista);
         }
+         [Authorize(Policy = "Empleado")]
+          public ActionResult InmDisp()
+        {
+             var lista= repositorio.ObtenerTodosDisponibles();    
+            return View(lista);
+        }
+         [Authorize(Policy = "Empleado")]
+         public ActionResult InmNoDisp()
+        {
+             var lista= repositorio.ObtenerTodosNoDisponibles();    
+            return View(lista);
+        }
 
         // GET: Inmuebles/Details/5
+         [Authorize(Policy = "Empleado")]
         public ActionResult Details(int id)
         {
           var inmueble = repositorio.ObtenerPorId(id);
@@ -36,6 +51,7 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
         }
 
         // GET: Inmuebles/Create
+         [Authorize(Policy = "Empleado")]
         public ActionResult Create()
         {
           ViewBag.Propietarios = repoPropietario.ObtenerTodos();
@@ -45,6 +61,7 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
         // POST: Inmuebles/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+         [Authorize(Policy = "Empleado")]
         public ActionResult Create(Inmueble inmueble)
         {
          try
@@ -70,6 +87,7 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
         }
 
         // GET: Inmuebles/Edit/5
+         [Authorize(Policy = "Empleado")]
         public ActionResult Edit(int id)
         {
             var inmueble = repositorio.ObtenerPorId(id);
@@ -84,6 +102,7 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
         // POST: Inmuebles/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+         [Authorize(Policy = "Empleado")]
         public ActionResult Edit(int id, Inmueble inmueble)
         {
           try
@@ -103,6 +122,7 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
         }
 
         // GET: Inmuebles/Delete/5
+         [Authorize(Policy = "Empleado")]
         public ActionResult Delete(int id)
         {
           var inmueble = repositorio.ObtenerPorId(id);
@@ -116,6 +136,7 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
         // POST: Inmuebles/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+         [Authorize(Policy = "Empleado")]
         public ActionResult Delete(int id, Inmueble inmueble)
         {
             try
@@ -133,5 +154,49 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
                 return View(inm);
             }
         }
+
+         [Authorize(Policy = "Empleado")]
+        public ActionResult InmProp()
+        {
+            ViewBag.Propietarios = repoPropietario.ObtenerTodos();
+           var res= new List<Inmueble>();
+            return View(res);
+        }
+        
+        // [HttpPost]
+        // [ValidateAntiForgeryToken]
+         public ActionResult InmPropGet(int id)
+        {
+            // var lista = repositorio.ObtenerInmPorPropietario(id);
+            // return Json(lista);
+           try
+            {
+                ViewBag.Propietarios = repoPropietario.ObtenerTodos();
+                ViewBag.Id=id;
+                var res = repositorio.ObtenerInmPorPropietario(id);
+                return View("InmProp",res);
+               
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Error = ex.Message });
+            }
+        }
+
+      // [Route("[controller]/GetInmueblesByPropietario/{q}", Name = "GetInmueblesByPropietario")]
+      //   public ActionResult GetInmueblesByPropietario(int id)
+      //   {
+      //       // var lista = repositorio.ObtenerInmPorPropietario(id);
+      //       // return Json(lista);
+      //      try
+      //       {
+      //           var res = repositorio.ObtenerInmPorPropietario(id);
+      //           return Json(new { Datos = res });
+      //       }
+      //       catch (Exception ex)
+      //       {
+      //           return Json(new { Error = ex.Message });
+      //       }
+      //   }
     }
 }

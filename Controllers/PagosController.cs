@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Zanche_Martin_InmobiliariaULP.Models;
@@ -23,6 +24,7 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
         repoInquilino= new RepositorioInquilino(config);
       }
         // GET: Pagos
+        [Authorize(Policy = "Empleado")]
         public ActionResult Index(int id)
         {
            var pagos= repositorio.ObtenerPagosPorContrato(id);
@@ -31,6 +33,7 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
         }
 
         // GET: Pagos/Details/5
+        [Authorize(Policy = "Empleado")]
         public ActionResult Details(int id)
         {
             var pago = repositorio.ObtenerPorId(id);
@@ -45,6 +48,7 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
         }
 
         // GET: Pagos/Create
+         [Authorize(Policy = "Empleado")]
         public ActionResult Create(int id)
         {
           String fechaActual=DateTime.Now.ToString("dd/MM/yyyy");
@@ -58,6 +62,7 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
         // POST: Pagos/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+         [Authorize(Policy = "Empleado")]
         public ActionResult Create(Pago pago)
         {
 
@@ -89,6 +94,7 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
         }
 
         // GET: Pagos/Edit/5
+         [Authorize(Policy = "Empleado")]
         public ActionResult Edit(int id)
         {
           var pago = repositorio.ObtenerPorId(id);
@@ -97,8 +103,10 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
         }
 
         // POST: Pagos/Edit/5
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
+         [Authorize(Policy = "Empleado")]
         public ActionResult Edit(int id, Pago pago)
         {
             try
@@ -118,6 +126,7 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
         }
 
         // GET: Pagos/Delete/5
+         [Authorize(Policy = "Empleado")]
         public ActionResult Delete(int id)
         {
               var pago = repositorio.ObtenerPorId(id);

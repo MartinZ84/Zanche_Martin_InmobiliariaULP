@@ -16,7 +16,7 @@ namespace Zanche_Martin_InmobiliariaULP{
 			IList<Contrato> res = new List<Contrato>();
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
-				string sql = "SELECT c.Id, FechaInicio, FechaFin, Estado, c.Precio, InquilinoId, InmuebleId, " +
+				string sql = "SELECT c.Id, FechaInicio, FechaFin, c.Estado, c.Precio, InquilinoId, InmuebleId, " +
 					" inq.Nombre, inq.Apellido, inm.Id, inm.Direccion, Dni_garante,Nombre_garante,Apellido_garante,Telefono_garante" +
                     " FROM Contratos c INNER JOIN Inquilinos inq ON c.InquilinoId = inq.Id "+
                     "INNER JOIN Inmuebles inm ON inm.Id= c.InmuebleId ";
@@ -149,7 +149,7 @@ namespace Zanche_Martin_InmobiliariaULP{
 			Contrato? contrato = null;
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
-                string sql = $"SELECT c.Id, FechaInicio, FechaFin, Estado, c.Precio, InquilinoId, InmuebleId," +
+                string sql = $"SELECT c.Id, FechaInicio, FechaFin, c.Estado, c.Precio, InquilinoId, InmuebleId," +
 					" inq.Nombre, inq.Apellido, inm.Id, inm.Direccion,Dni_Garante, Nombre_Garante, Apellido_Garante, Telefono_Garante" +
                     $" FROM Contratos c INNER JOIN Inquilinos inq ON c.InquilinoId = inq.Id "+
                     "INNER JOIN Inmuebles inm ON inm.Id= c.InmuebleId "  +
@@ -192,7 +192,57 @@ namespace Zanche_Martin_InmobiliariaULP{
 				}
 			}
 			return contrato;
-        }
+    }
 
+
+     public IList<Contrato> ObtenerAllContratosDeInmueble(int id)
+		{
+			IList<Contrato> res = new List<Contrato>();
+			using (MySqlConnection connection = new MySqlConnection(connectionString))
+			{
+				string sql = "SELECT c.Id, FechaInicio, FechaFin, c.Estado, c.Precio, InquilinoId, InmuebleId, " +
+					" inq.Nombre, inq.Apellido, inm.Direccion, Dni_garante,Nombre_garante,Apellido_garante,Telefono_garante" +
+                    " FROM Contratos c INNER JOIN Inquilinos inq ON c.InquilinoId = inq.Id "+
+                    "INNER JOIN Inmuebles inm ON inm.Id= c.InmuebleId " +
+                    " WHERE inm.Id = @id";
+				using (MySqlCommand command = new MySqlCommand(sql, connection))
+				{
+					//command.CommandType = CommandType.Text;
+          command.Parameters.AddWithValue($"@{nameof(id)}", id);
+					connection.Open();
+					var reader = command.ExecuteReader();
+					while (reader.Read())
+					{
+						Contrato contrato = new Contrato
+						{
+						              	Id = reader.GetInt32(0),
+                            FechaInicio = reader.GetDateTime(1),
+                            FechaFin = reader.GetDateTime(2),
+                            Estado= reader.GetString(3),
+                            Precio= reader.GetInt32(4),
+                            InquilinoId= reader.GetInt32(5),
+                            InmuebleId= reader.GetInt32(6),
+                            Inquilino = new Inquilino
+                            {
+                                Id = reader.GetInt32(5),
+                                Nombre = reader.GetString(7),
+                                Apellido = reader.GetString(8),
+							              },
+                            Inmueble= new Inmueble {
+                               Id = reader.GetInt32(6),
+                               Direccion= reader.GetString(9),
+                            },
+                            Dni_Garante = reader.GetString(10),
+                            Nombre_Garante = reader.GetString(11),
+                            Apellido_Garante = reader.GetString(12),
+                            Telefono_Garante = reader.GetString(13),
+						};
+						res.Add(contrato);
+					}
+					connection.Close();
+				}
+			}
+			return res;
+		}
   }
 }

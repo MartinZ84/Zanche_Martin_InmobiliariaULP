@@ -16,7 +16,7 @@ namespace Zanche_Martin_InmobiliariaULP{
 			IList<Inmueble> res = new List<Inmueble>();
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
-				string sql = "SELECT i.Id, Direccion, Ambientes, Superficie, Tipo, Uso, Precio,Latitud, Longitud, PropietarioId," +
+				string sql = "SELECT i.Id, Direccion, Ambientes, Superficie, Tipo, Uso, Precio,Latitud, Longitud, Estado, PropietarioId," +
 					" p.Nombre, p.Apellido" +
                     " FROM Inmuebles i INNER JOIN Propietarios p ON i.PropietarioId = p.Id";
 				using (MySqlCommand command = new MySqlCommand(sql, connection))
@@ -37,12 +37,13 @@ namespace Zanche_Martin_InmobiliariaULP{
                             Precio=reader.GetInt32(6),
                             Latitud = reader.GetDecimal(7),
                             Longitud = reader.GetDecimal(8),
-                            PropietarioId= reader.GetInt32(9),
+                            Estado = reader.GetString(9),
+                            PropietarioId= reader.GetInt32(10),
                             Duenio = new Propietario
                             {
-                                Id = reader.GetInt32(9),
-                                Nombre = reader.GetString(10),
-                                Apellido = reader.GetString(11),
+                                Id = reader.GetInt32(10),
+                                Nombre = reader.GetString(11),
+                                Apellido = reader.GetString(12),
 							}
 						};
 						res.Add(inmueble);
@@ -57,8 +58,8 @@ namespace Zanche_Martin_InmobiliariaULP{
 			int res = -1;
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
-				string sql = $"INSERT INTO Inmuebles (Direccion, Ambientes, Superficie, Tipo,Uso,Precio,Latitud, Longitud, PropietarioId) " +
-					"VALUES (@direccion, @ambientes, @superficie, @tipo, @uso, @precio,@latitud, @longitud, @PropietarioId);" +
+				string sql = $"INSERT INTO Inmuebles (Direccion, Ambientes, Superficie, Tipo,Uso,Precio,Latitud, Longitud, Estado, PropietarioId) " +
+					"VALUES (@direccion, @ambientes, @superficie, @tipo, @uso, @precio,@latitud, @longitud, @Estado, @PropietarioId);" +
 					"SELECT LAST_INSERT_ID();";//devuelve el id insertado (LAST_INSERT_ID para mysql)
 				using (var command = new MySqlCommand(sql, connection))
 				{
@@ -71,6 +72,7 @@ namespace Zanche_Martin_InmobiliariaULP{
         	command.Parameters.AddWithValue($"@{nameof(inmueble.Precio)}", inmueble.Precio);
           command.Parameters.AddWithValue($"@{nameof(inmueble.Latitud)}", inmueble.Latitud);
 					command.Parameters.AddWithValue($"@{nameof(inmueble.Longitud)}", inmueble.Longitud);
+          command.Parameters.AddWithValue($"@{nameof(inmueble.Estado)}", inmueble.Estado);
         	command.Parameters.AddWithValue($"@{nameof(inmueble.PropietarioId)}", inmueble.PropietarioId);    	
 				
           
@@ -107,7 +109,7 @@ namespace Zanche_Martin_InmobiliariaULP{
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
                 string sql = "UPDATE Inmuebles SET " +
-					"Direccion=@direccion, Ambientes=@ambientes, Tipo=@tipo, Uso=@uso, Precio=@precio, Superficie=@superficie, Latitud=@latitud, Longitud=@longitud, PropietarioId=@propietarioId " +
+					"Direccion=@direccion, Ambientes=@ambientes, Tipo=@tipo, Uso=@uso, Precio=@precio, Superficie=@superficie, Latitud=@latitud, Longitud=@longitud, Estado=@estado, PropietarioId=@propietarioId " +
 					"WHERE Id = @id";
 				using (MySqlCommand command = new MySqlCommand(sql, connection))
 				{
@@ -119,6 +121,7 @@ namespace Zanche_Martin_InmobiliariaULP{
 					command.Parameters.AddWithValue("@superficie", inmueble.Superficie);
 					command.Parameters.AddWithValue("@latitud", inmueble.Latitud);
 					command.Parameters.AddWithValue("@longitud", inmueble.Longitud);
+          command.Parameters.AddWithValue("@estado", inmueble.Estado);
 					command.Parameters.AddWithValue("@propietarioId", inmueble.PropietarioId);
 					command.Parameters.AddWithValue("@id", inmueble.Id);
 					// command.CommandType = CommandType.Text;
@@ -136,14 +139,14 @@ namespace Zanche_Martin_InmobiliariaULP{
 			Inmueble? inmueble = null;
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
-                string sql = $"SELECT i.Id, Direccion, Ambientes, Superficie, Tipo,Uso,Precio,Latitud, Longitud, PropietarioId, p.Nombre, p.Apellido" +
+                string sql = $"SELECT i.Id, Direccion, Ambientes, Superficie, Tipo,Uso,Precio,Latitud, Longitud, Estado, PropietarioId, p.Nombre, p.Apellido" +
                     $" FROM Inmuebles i INNER JOIN Propietarios p ON i.PropietarioId = p.Id" +
                     $" WHERE i.Id=@id";
 				using (MySqlCommand command = new MySqlCommand(sql, connection))
 				{
                     // command.Parameters.Add("@id", SqlDbType.Int).Value = id;
                     // command.CommandType = CommandType.Text;
-                      command.Parameters.AddWithValue($"@{nameof(id)}", id);
+          command.Parameters.AddWithValue($"@{nameof(id)}", id);
 					connection.Open();
 					var reader = command.ExecuteReader();
 					if (reader.Read())
@@ -159,12 +162,13 @@ namespace Zanche_Martin_InmobiliariaULP{
                             Precio= reader.GetInt32(6),
                             Latitud = reader.GetDecimal(7),
                             Longitud = reader.GetDecimal(8),
-                            PropietarioId = reader.GetInt32(9),
+                            Estado = reader.GetString(9),
+                            PropietarioId = reader.GetInt32(10),
                             Duenio = new Propietario
                             {
-                                Id = reader.GetInt32(9),
-                                Nombre = reader.GetString(10),
-                                Apellido = reader.GetString(11),
+                                Id = reader.GetInt32(10),
+                                Nombre = reader.GetString(11),
+                                Apellido = reader.GetString(12),
                             }
                         };
 					}
@@ -173,6 +177,139 @@ namespace Zanche_Martin_InmobiliariaULP{
 			}
 			return inmueble;
         }
+    
+     public IList<Inmueble> ObtenerTodosDisponibles()
+		{
+			IList<Inmueble> res = new List<Inmueble>();
+			using (MySqlConnection connection = new MySqlConnection(connectionString))
+			{
+				string sql = "SELECT i.Id, Direccion, Ambientes, Superficie, Tipo, Uso, Precio,Latitud, Longitud, Estado, PropietarioId," +
+					" p.Nombre, p.Apellido" +
+                    " FROM Inmuebles i INNER JOIN Propietarios p ON i.PropietarioId = p.Id " +
+                    " WHERE i.Estado = 'Disponible'";
+				using (MySqlCommand command = new MySqlCommand(sql, connection))
+				{
+					//command.CommandType = CommandType.Text;
+					connection.Open();
+					var reader = command.ExecuteReader();
+					while (reader.Read())
+					{
+						Inmueble inmueble = new Inmueble
+						{
+						              	Id = reader.GetInt32(0),
+                            Direccion = reader.GetString(1),
+                            Ambientes = reader.GetInt32(2),
+                            Superficie = reader.GetInt32(3),
+                            Tipo=reader.GetString(4),
+                            Uso=reader.GetString(5),
+                            Precio=reader.GetInt32(6),
+                            Latitud = reader.GetDecimal(7),
+                            Longitud = reader.GetDecimal(8),
+                            Estado = reader.GetString(9),
+                            PropietarioId= reader.GetInt32(10),
+                            Duenio = new Propietario
+                            {
+                                Id = reader.GetInt32(10),
+                                Nombre = reader.GetString(11),
+                                Apellido = reader.GetString(12),
+							}
+						};
+						res.Add(inmueble);
+					}
+					connection.Close();
+				}
+			}
+			return res;
+		}
+
+     public IList<Inmueble> ObtenerTodosNoDisponibles()
+		{
+			IList<Inmueble> res = new List<Inmueble>();
+			using (MySqlConnection connection = new MySqlConnection(connectionString))
+			{
+				string sql = "SELECT i.Id, Direccion, Ambientes, Superficie, Tipo, Uso, Precio,Latitud, Longitud, Estado, PropietarioId," +
+					" p.Nombre, p.Apellido" +
+                    " FROM Inmuebles i INNER JOIN Propietarios p ON i.PropietarioId = p.Id " +
+                    " WHERE i.Estado = 'No Disponible'";
+				using (MySqlCommand command = new MySqlCommand(sql, connection))
+				{
+					//command.CommandType = CommandType.Text;
+					connection.Open();
+					var reader = command.ExecuteReader();
+					while (reader.Read())
+					{
+						Inmueble inmueble = new Inmueble
+						{
+						              	Id = reader.GetInt32(0),
+                            Direccion = reader.GetString(1),
+                            Ambientes = reader.GetInt32(2),
+                            Superficie = reader.GetInt32(3),
+                            Tipo=reader.GetString(4),
+                            Uso=reader.GetString(5),
+                            Precio=reader.GetInt32(6),
+                            Latitud = reader.GetDecimal(7),
+                            Longitud = reader.GetDecimal(8),
+                            Estado = reader.GetString(9),
+                            PropietarioId= reader.GetInt32(10),
+                            Duenio = new Propietario
+                            {
+                                Id = reader.GetInt32(10),
+                                Nombre = reader.GetString(11),
+                                Apellido = reader.GetString(12),
+							}
+						};
+						res.Add(inmueble);
+					}
+					connection.Close();
+				}
+			}
+			return res;
+		}
+
+     public IList<Inmueble> ObtenerInmPorPropietario(int id)
+		{
+			IList<Inmueble> res = new List<Inmueble>();
+			using (MySqlConnection connection = new MySqlConnection(connectionString))
+			{
+				string sql = "SELECT i.Id, Direccion, Ambientes, Superficie, Tipo, Uso, Precio,Latitud, Longitud, Estado, PropietarioId," +
+					" p.Nombre, p.Apellido" +
+                    " FROM Inmuebles i INNER JOIN Propietarios p ON i.PropietarioId = p.Id " +
+                    " WHERE p.Id = @id";
+				using (MySqlCommand command = new MySqlCommand(sql, connection))
+				{
+					//command.CommandType = CommandType.Text;
+          command.Parameters.AddWithValue($"@{nameof(id)}", id);
+					connection.Open();
+					var reader = command.ExecuteReader();
+					while (reader.Read())
+					{
+						Inmueble inmueble = new Inmueble
+						{
+						              	Id = reader.GetInt32(0),
+                            Direccion = reader.GetString(1),
+                            Ambientes = reader.GetInt32(2),
+                            Superficie = reader.GetInt32(3),
+                            Tipo=reader.GetString(4),
+                            Uso=reader.GetString(5),
+                            Precio=reader.GetInt32(6),
+                            Latitud = reader.GetDecimal(7),
+                            Longitud = reader.GetDecimal(8),
+                            Estado = reader.GetString(9),
+                            PropietarioId= reader.GetInt32(10),
+                            Duenio = new Propietario
+                            {
+                                Id = reader.GetInt32(10),
+                                Nombre = reader.GetString(11),
+                                Apellido = reader.GetString(12),
+							}
+						};
+						res.Add(inmueble);
+					}
+					connection.Close();
+				}
+			}
+			return res;
+		}
 
   }
 }

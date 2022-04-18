@@ -80,11 +80,27 @@
                         <td>@(i.Tipo + " - " + i.Direccion)</td>
                     }
              }
-            <td>
+            @* <td>
                 @Html.ActionLink("Editar", "Edit", new {  id=item.Id },new {@class="btn btn-success"}) |
                 @Html.ActionLink("Detalles", "Details", new {  id=item.Id },new {@class="btn btn-warning"}) |
                 @Html.ActionLink("Borrar", "Delete", new {  id=item.Id  }, new {@class="btn btn-danger"}) | 
                 @Html.ActionLink("Pagos", "Index","Pagos", new {  id = item.Id }, new {@class="btn btn-info"})
+            </td> *@
+            <td>
+               <div class="dropdown text-light" >
+                                  <a class="btn btn-outline-success dropdown-toggle" href="#" role="button" id="userMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent" data-display="static">
+                                    <span class="lnr lnr-user"></span> Acciones
+                                  </a>
+
+                                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                         @Html.ActionLink("Editar", "Edit", new {  id=item.Id },new {@class="dropdown-item text-dark"})
+                                        @Html.ActionLink("Detalles", "Details", new {  id=item.Id },new {@class="dropdown-item text-dark"}) 
+                                        @Html.ActionLink("Pagos", "Index","Pagos", new {  id = item.Id }, new {@class="dropdown-item text-dark"})
+                                         @Html.ActionLink("Renovar contrato", "Renovar", new {  id = item.Id }, new {@class="dropdown-item text-dark"})
+                                        @Html.ActionLink("Borrar", "Delete", new {  id=item.Id  }, new {@class="dropdown-item text-dark"}) 
+                                        
+                                  </div>
+                              </div>  
             </td>
         </tr>
 }

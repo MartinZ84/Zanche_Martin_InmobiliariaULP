@@ -1,0 +1,107 @@
+@model IEnumerable<Zanche_Martin_InmobiliariaULP.Models.Inmueble>
+
+@{
+    ViewData["Title"] = "Inmuebles";
+}
+
+<h1>Listado de Inmuebles No Disponibles</h1>
+<hr>
+<div class="row">   
+       <a asp-action="Create"class="btn btn-primary col-auto me-auto">Nuevo</a>
+      <a asp-controller="Inmuebles" asp-action="InmDisp" class="btn btn-outline-primary col-auto">Inmuebles disponibles</a>
+      <a asp-action="Index" class="btn btn-outline-secondary col-auto">Volver a todos los inmuebles</a> 
+      <a asp-controller="Inmuebles" asp-action="InmProp" class="btn btn-outline-dark col-auto">Inmuebles por propietario</a>
+  </div>
+  <hr>
+@* <p>
+    <a asp-action="Create"class="btn btn-primary">Nuevo</a>
+</p> *@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Cod
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Direccion)
+            </th>
+            <th>
+                Amb
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tipo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Uso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Precio)
+            </th>
+            <th>
+                Mt2
+            </th>
+            @* <th>
+                @Html.DisplayNameFor(model => model.Latitud)
+            </th>
+            *@
+            <th>
+                @Html.DisplayNameFor(model => model.Estado)
+            </th> 
+            <th>
+                @Html.DisplayNameFor(model => model.PropietarioId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ambientes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tipo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Uso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Superficie)
+            </td>
+            @* <td>
+                @Html.DisplayFor(modelItem => item.Latitud)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+              	@(item.Duenio.Nombre + " " + item.Duenio.Apellido)
+                @* @Html.DisplayFor(modelItem => item.PropietarioId) *@
+            </td>
+           <td>
+               <div class="dropdown text-light" >
+                                  <a class="btn btn-outline-success dropdown-toggle" href="#" role="button" id="userMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent" data-display="static">
+                                    <span class="lnr lnr-user"></span> Acciones
+                                  </a>
+
+                                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                         @Html.ActionLink("Editar", "Edit", new {  id=item.Id },new {@class="dropdown-item text-dark"})
+                                        @Html.ActionLink("Detalles", "Details", new {  id=item.Id },new {@class="dropdown-item text-dark"}) 
+                                        @Html.ActionLink("Borrar", "Delete", new {  id=item.Id  }, new {@class="dropdown-item text-dark"}) 
+                                       @Html.ActionLink("Contratos", "ContratosInmueble","Contratos", new {  id = item.Id }, new {@class="dropdown-item text-dark"})
+                                  </div>
+                              </div>  
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

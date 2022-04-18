@@ -1,0 +1,79 @@
+
+@model Zanche_Martin_InmobiliariaULP.Models.Usuario
+
+@{
+    ViewData["Title"] = "Detalle usuario";
+}
+
+<h1>Detalles</h1>
+<hr>  
+<div class="container ">
+  <div class="row justify-content-md-center">
+      <div class="col-12 col-md-4">
+          <div class="card">          
+            <div class="card-body ">
+              <h5 class="card-title"> Usuario</h5>
+                <form asp-action="Edit" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Id" class="control-label"></label>
+                        <input asp-for="Id" class="form-control" disabled />
+                        <span asp-validation-for="Id" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Nombre" class="control-label"></label>
+                        <input asp-for="Nombre" class="form-control" readonly />
+                        <span asp-validation-for="Nombre" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Apellido" class="control-label"></label>
+                        <input asp-for="Apellido" class="form-control" readonly />
+                        <span asp-validation-for="Apellido" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control"  readonly/>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Rol" class="control-label"></label>
+                        @foreach (var kvp in (IDictionary<int, string>)ViewBag.Roles)
+                              {
+                                @if(kvp.Key == Model.Rol){
+                                  <input  class="form-control" value="@kvp.Value" readonly /> 
+                                }
+                              }                
+                        <span asp-validation-for="Rol" class="text-danger"></span>
+                    </div>               
+                </form>
+              </div>
+            </div>
+          
+      </div>
+       <div class="col-12 col-md-4 ">
+          <div class="card">          
+            <div class="card-body ">
+              <h5 class="card-title"> Avatar</h5>
+                  <div class="form-group">                        
+                        @if(String.IsNullOrEmpty(Model.Avatar)){	  <img  class="form-control rounded mx-auto d-block"  src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&f=y" />}
+                      else {
+                          <img  class="form-control rounded mx-auto d-block"  src="@Model.Avatar" />
+                      }
+                      <span asp-validation-for="Avatar" class="text-danger"></span>
+                    </div>
+                  </div>
+              </div>
+          </div>            
+   </div>
+     <div class="form-group text-center">            
+                @Html.ActionLink("Editar", "Edit", new {  id = Model.Id }, new {@class="btn btn-success"}) | 
+              <a asp-action="Index" class="btn btn-secondary col-2">Volver a usuarios</a>  
+    </div>
+</div>
+    
+  
+  
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

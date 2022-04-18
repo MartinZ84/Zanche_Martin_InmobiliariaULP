@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Zanche_Martin_InmobiliariaULP.Models;
@@ -22,6 +23,7 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
         repoInquilino= new RepositorioInquilino(config);
       }
         // GET: Contratos
+         [Authorize(Policy = "Empleado")]
         public ActionResult Index()
         {
           var lista=repositorio.ObtenerTodos();
@@ -32,6 +34,7 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
         }
 
         // GET: Contratos/Details/5
+         [Authorize(Policy = "Empleado")]
         public ActionResult Details(int id)
         {
           
@@ -47,25 +50,55 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
         }
 
         // GET: Contratos/Create
+         [Authorize(Policy = "Empleado")]
         public ActionResult Create()
         {
+          TempData.Remove("returnUrl");
+          var returnUrl = "/Contratos";
             ViewBag.Inquilino=repoInquilino.ObtenerTodos();
             ViewBag.Inmueble=repoInmueble.ObtenerTodos();
+            TempData["returnUrl"] = returnUrl;
+            return View();
+        }
+
+           [Authorize(Policy = "Empleado")]
+        public ActionResult CreateByInmId(int id)
+        {
+          TempData.Remove("returnUrl");
+           var returnUrl = "/Contratos/ContratosInmueble/"+id ; 
+      
+            ViewBag.Inquilino=repoInquilino.ObtenerTodos();
+            ViewBag.Inmueble=repoInmueble.ObtenerPorId(id);
+           TempData["returnUrl"] = returnUrl;
             return View();
         }
 
         // POST: Contratos/Create
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
+         [Authorize(Policy = "Empleado")]
         public ActionResult Create(Contrato contrato)
         {
+           var urlOrigen=TempData["returnUrl"].ToString();
             try
             {
+               
+               
                  if (ModelState.IsValid)
                   {
                       repositorio.Alta(contrato);
                       TempData["Id"] = contrato.Id;
-                      return RedirectToAction(nameof(Index));
+                    
+                      // return RedirectToAction(nameof(Index));
+                      if(TempData.ContainsKey("returnUrl")){
+                        return Redirect(urlOrigen);
+                      }
+                      else{
+                        return RedirectToAction(nameof(Index));
+                      }
+                       
+                      //return View();
                   }
                   else
                   {
@@ -83,9 +116,11 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
         }
 
         // GET: Contratos/Edit/5
+         [Authorize(Policy = "Empleado")]
         public ActionResult Edit(int id)
         {
               var contrato = repositorio.ObtenerPorId(id);
+        
             ViewBag.Inquilinos = repoInquilino.ObtenerTodos();ViewBag.Inmuebles = repoInmueble.ObtenerTodos();
             if (TempData.ContainsKey("Mensaje"))
                 ViewBag.Mensaje = TempData["Mensaje"];
@@ -97,6 +132,7 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
         // POST: Contratos/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+         [Authorize(Policy = "Empleado")]
         public ActionResult Edit(int id, Contrato contrato)
         {
             try
@@ -118,6 +154,7 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
         }
 
         // GET: Contratos/Delete/5
+         [Authorize(Policy = "Empleado")]
         public ActionResult Delete(int id)
         {
             var contrato = repositorio.ObtenerPorId(id);
@@ -131,6 +168,7 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
         // POST: Contratos/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+         [Authorize(Policy = "Empleado")]
         public ActionResult Delete(int id, Contrato contrato)
         {
             try
@@ -148,5 +186,36 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
                 return View(contrat);
             }
         }
+
+       // GET: Contratos/Renovar/5
+         [Authorize(Policy = "Empleado")]
+        public ActionResult Renovar(int id)
+        {
+            var contrato = repositorio.ObtenerPorId(id);
+            contrato.FechaInicio=contrato.FechaInicio.Date.AddDays(2);
+            contrato.FechaFin=contrato.FechaInicio.AddYears(2);
+            
+            ViewBag.Inquilinos = repoInquilino.ObtenerTodos();ViewBag.Inmuebles = repoInmueble.ObtenerTodos();
+            if (TempData.ContainsKey("Mensaje"))
+                ViewBag.Mensaje = TempData["Mensaje"];
+            if (TempData.ContainsKey("Error"))
+                ViewBag.Error = TempData["Error"];
+            return View(contrato);
         }
+
+        public ActionResult ContratosInmueble(int id)
+        {
+            var contrato = repositorio.ObtenerAllContratosDeInmueble(id);
+            var inmuebleSolicitado=repoInmueble.ObtenerPorId(id);
+            ViewBag.inmuebleCod=inmuebleSolicitado.Id;
+            ViewBag.InmuebleDireccion=inmuebleSolicitado.Direccion;           
+            // ViewBag.Inquilinos = repoInquilino.ObtenerTodos();
+            // ViewBag.Inmuebles = repoInmueble.ObtenerTodos();
+            if (TempData.ContainsKey("Mensaje"))
+                ViewBag.Mensaje = TempData["Mensaje"];
+            if (TempData.ContainsKey("Error"))
+                ViewBag.Error = TempData["Error"];
+            return View(contrato);
+        }
+      }
     }

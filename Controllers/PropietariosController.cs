@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Zanche_Martin_InmobiliariaULP.Models;
@@ -16,6 +17,7 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
         repositorio = new RepositorioPropietario(config);
       }
         // GET: Propietarios
+        [Authorize(Policy = "Empleado")]
         public ActionResult Index()
         {
           var lista= repositorio.ObtenerTodos();       
@@ -23,6 +25,7 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
         }
 
         // GET: Propietarios/Details/5
+        [Authorize(Policy = "Empleado")]
         public ActionResult Details(int id)
         {
           var propietario= repositorio.ObtenerPorId(id);
@@ -30,14 +33,17 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
         }
 
         // GET: Propietarios/Create
+        [Authorize(Policy = "Empleado")]
         public ActionResult Create()
         {
             return View();
         }
 
         // POST: Propietarios/Create
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "Empleado")]
         public ActionResult Create(Propietario p)
         {
             try
@@ -59,6 +65,7 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
         }
 
         // GET: Propietarios/Edit/5
+        [Authorize(Policy = "Empleado")]
         public ActionResult Edit(int id)
         {
           try
@@ -80,6 +87,7 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
         // POST: Propietarios/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "Empleado")]
         public ActionResult Edit(int id, Propietario p)
         {
           // Propietario ? propEdit= null;
@@ -104,6 +112,7 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
         }
 
         // GET: Propietarios/Delete/5
+        [Authorize(Policy = "Empleado")]
         public ActionResult Delete(int id)
         {
           try
@@ -126,6 +135,7 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
         // POST: Propietarios/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "Empleado")]
         public ActionResult Delete(int id, Propietario propietario)
         {
             try
@@ -141,6 +151,19 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
                 ViewBag.StackTrate = ex.StackTrace;
                 return View(prop);
                 // return View();
+            }
+        }
+
+             public IActionResult Buscar(int q)
+        {
+            try
+            {
+                var res = repositorio.ObtenerPorId(q);
+                return Json(new { Datos = res });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Error = ex.Message });
             }
         }
     }

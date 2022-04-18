@@ -1,7 +1,30 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//Agregar servicios de autoriazación 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Administrador", policy => policy.RequireClaim("Administrador"));
+    options.AddPolicy("Usuario", policy => policy.RequireClaim("Usuario"));
+    options.AddPolicy("Empleado", policy => policy.RequireClaim("Empleado"));
+    //agregar políticas de autorización en empleados para que deje tambien a administrador y superadministrador
+      options.AddPolicy("Empleado", policy => policy.RequireRole("Empleado"));
+    options.AddPolicy("Administrador", policy => policy.RequireRole("Administrador", "SuperAdministrador"));
+});       
+
+//Agrega de autenticación con cookie  
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Usuarios/Login";
+        options.LogoutPath = "/Home/Logout";
+        options.AccessDeniedPath = "/Home/Restringido";
+    });
+
 
 var app = builder.Build();
 
@@ -18,6 +41,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
