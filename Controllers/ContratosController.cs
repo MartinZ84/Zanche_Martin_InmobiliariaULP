@@ -27,6 +27,7 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
         public ActionResult Index()
         {
           var lista=repositorio.ObtenerTodos();
+          ViewBag.Cantidad= lista.Count();
           ViewBag.Contratos=repositorio.ObtenerTodos();
            ViewBag.Inquilinos=repoInquilino.ObtenerTodos();
             ViewBag.Inmuebles=repoInmueble.ObtenerTodos();
@@ -216,6 +217,27 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
             if (TempData.ContainsKey("Error"))
                 ViewBag.Error = TempData["Error"];
             return View(contrato);
+        }
+
+        // GET: Contratos
+         [Authorize(Policy = "Empleado")]
+        public ActionResult ContratosVigentes()
+        {
+          var lista=repositorio.ObtenerTodosVigentes();
+           ViewBag.Cantidad= lista.Count();
+           ViewBag.Inquilinos=repoInquilino.ObtenerTodos();
+            ViewBag.Inmuebles=repoInmueble.ObtenerTodos();
+            return View(lista);
+        }
+
+          [Authorize(Policy = "Empleado")]
+        public ActionResult ContratosNoVigentes()
+        {
+          var lista=repositorio.ObtenerTodosNoVigentes();
+           ViewBag.Cantidad= lista.Count();
+           ViewBag.Inquilinos=repoInquilino.ObtenerTodos();
+            ViewBag.Inmuebles=repoInmueble.ObtenerTodos();
+            return View(lista);
         }
       }
     }

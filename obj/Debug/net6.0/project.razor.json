@@ -16378,6 +16378,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\Facultad ULP Martin\\.Net\\Zanche_Martin_InmobiliariaULP\\Views\\Contratos\\ContratosNoVigentes.cshtml",
+      "TargetPath": "Views\\Contratos\\ContratosNoVigentes.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\Facultad ULP Martin\\.Net\\Zanche_Martin_InmobiliariaULP\\Views\\Propietarios\\Details.cshtml",
       "TargetPath": "Views\\Propietarios\\Details.cshtml",
       "FileKind": "mvc"
@@ -16530,6 +16535,11 @@
     {
       "FilePath": "d:\\Facultad ULP Martin\\.Net\\Zanche_Martin_InmobiliariaULP\\Views\\Shared\\_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Facultad ULP Martin\\.Net\\Zanche_Martin_InmobiliariaULP\\Views\\Contratos\\ContratosVigentes.cshtml",
+      "TargetPath": "Views\\Contratos\\ContratosVigentes.cshtml",
       "FileKind": "mvc"
     },
     {

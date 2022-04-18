@@ -1,21 +1,19 @@
 @model IEnumerable<Zanche_Martin_InmobiliariaULP.Models.Contrato>
 
 @{
-    ViewData["Title"] = "Contratos";
-    var Contratos= (IList<Contrato>)ViewBag.Contratos;
+    ViewData["Title"] = "Contratos vigentes";
+   
     var Inquilinos= (IList<Inquilino>)ViewBag.Inquilinos;
     var Inmuebles= (IList<Inmueble>)ViewBag.Inmuebles; 
 }
 
-<h1>Contratos</h1>
-<h5>Cantidad contratos totales: @ViewBag.cantidad</h5>
+<h1>Contratos vigentes</h1>
+<h5>Cantidad contratos vigentes: @ViewBag.cantidad</h5>
 <hr>
-
 <div class="row">   
        <a asp-action="Create"class="btn btn-primary col-auto me-auto">Nuevo contrato</a>
-      <a asp-controller="Contratos" asp-action="ContratosVigentes" class="btn btn-outline-primary col-auto">Contratos vigentes</a>
       <a asp-controller="Contratos" asp-action="ContratosNoVigentes" class="btn btn-outline-primary col-auto">Contratos No vigentes</a>
-      
+      <a asp-action="Index" class="btn btn-outline-primary col-auto">Todos los contratos</a>
         @* <a asp-controller="Inmuebles" asp-action="InmProp" class="btn btn-outline-dark col-auto">Inmuebles por propietario</a> *@
       @* <a asp-action="Index" class="btn btn-primary col-2">Nuevo pago</a> 
       <a href="#" onClick="history.back();"class="btn btn-secondary col-2">Volver</a>   *@
@@ -48,7 +46,7 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Contratos) {
+@foreach (var item in Model) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Id)
@@ -65,35 +63,21 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Estado)
             </td>
-            @* <td>
-                @Html.DisplayFor(modelItem => item.InquilinoId)
-            </td>
-             *@
+           
              @foreach (var i in Inquilinos){
                 @if (i.Id == item.InquilinoId)
                     {
                         <td>@(i.Nombre + " " + i.Apellido)</td>
                     }
              }
-                    @* {
-                        @:<td @(i.Id==item.InquilinoId ? "value": @i.Id)>@(i.Nombre + " " + i.Apellido)</td>
-                    } *@
-            
-            @* <td>
-                @Html.DisplayFor(modelItem => item.InmuebleId)
-            </td> *@
+               
             @foreach (var i in Inmuebles){
                 @if (i.Id == item.InmuebleId)
                     {
                         <td>@(i.Tipo + " - " + i.Direccion)</td>
                     }
              }
-            @* <td>
-                @Html.ActionLink("Editar", "Edit", new {  id=item.Id },new {@class="btn btn-success"}) |
-                @Html.ActionLink("Detalles", "Details", new {  id=item.Id },new {@class="btn btn-warning"}) |
-                @Html.ActionLink("Borrar", "Delete", new {  id=item.Id  }, new {@class="btn btn-danger"}) | 
-                @Html.ActionLink("Pagos", "Index","Pagos", new {  id = item.Id }, new {@class="btn btn-info"})
-            </td> *@
+         
             <td>
                <div class="dropdown text-light" >
                                   <a class="btn btn-outline-success dropdown-toggle" href="#" role="button" id="userMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent" data-display="static">
