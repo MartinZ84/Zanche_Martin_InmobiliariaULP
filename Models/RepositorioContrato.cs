@@ -254,7 +254,7 @@ namespace Zanche_Martin_InmobiliariaULP{
 					" inq.Nombre, inq.Apellido, inm.Id, inm.Direccion, Dni_garante,Nombre_garante,Apellido_garante,Telefono_garante" +
                     " FROM Contratos c INNER JOIN Inquilinos inq ON c.InquilinoId = inq.Id "+
                     "INNER JOIN Inmuebles inm ON inm.Id= c.InmuebleId " + 
-                    "WHERE c.estado = 'Vigente' AND FechaFin > NOW()" +" ORDER BY FechaFin ASC";
+                    "WHERE c.estado = 'Vigente' AND FechaFin > NOW() AND FechaInicio <= NOW()" +" ORDER BY FechaFin ASC";
 				using (MySqlCommand command = new MySqlCommand(sql, connection))
 				{
 					//command.CommandType = CommandType.Text;
@@ -303,7 +303,7 @@ namespace Zanche_Martin_InmobiliariaULP{
 					" inq.Nombre, inq.Apellido, inm.Id, inm.Direccion, Dni_garante,Nombre_garante,Apellido_garante,Telefono_garante" +
                     " FROM Contratos c INNER JOIN Inquilinos inq ON c.InquilinoId = inq.Id "+
                     "INNER JOIN Inmuebles inm ON inm.Id= c.InmuebleId " + 
-                    "WHERE  FechaFin <= NOW() OR c.Estado='No vigente' " +" ORDER BY FechaFin ASC";
+                    "WHERE  FechaInicio > NOW() OR FechaFin <= NOW() OR c.Estado='No vigente' " +" ORDER BY FechaFin ASC";
 				using (MySqlCommand command = new MySqlCommand(sql, connection))
 				{
 					//command.CommandType = CommandType.Text;

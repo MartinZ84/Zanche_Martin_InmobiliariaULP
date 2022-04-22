@@ -107,12 +107,15 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
         }
 
         
-        // GET: Usuarios/Edit/5
+        // GET: Usuarios/Perfil/5
         [Authorize]
         public ActionResult Perfil()
         {
             ViewData["Title"] = "Mi perfil";
             var u = repositorio.ObtenerPorEmail(User.Identity.Name);
+            TempData.Remove("returnUrl");
+           var returnUrl = "/Usuarios/Perfil" ; 
+           TempData["returnUrl"] = returnUrl;
             ViewBag.Roles = Usuario.ObtenerRoles();
             return View("Edit", u);
         }
@@ -125,16 +128,22 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
               ViewData["Title"] = "Editar usuario";
             var usuario = repositorio.ObtenerPorId(id);
             ViewBag.Roles = Usuario.ObtenerRoles();
+             TempData.Remove("returnUrl");
+           var returnUrl = "/Usuarios/Edit/" +id; 
+           TempData["returnUrl"] = returnUrl;
             return View(usuario);
         }
 
-        // POST: Usuarios/Edit/5
-        [HttpPost]
+  
+
+    // POST: Usuarios/Edit/5
+    [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
         public ActionResult Edit(int id, Usuario usuario)
         {         
-          var vista = nameof(Edit);//de que vista provengo
+          var vista = "";// nameof(Edit);//de que vista provengo
+          var returnUrl= TempData["returnUrl"].ToString();
             try
             {
                 if (!User.IsInRole("Administrador"))//no soy admin
@@ -145,7 +154,7 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
                     //  if (usuarioActual.Email != User.Identity.Name)
                     //     return RedirectToAction(nameof(Index), "Home");
 
-                    //ACA MODIFICACION DESDE EL PERFIL DE USUARIO
+                    //ACA INICIO MODIFICACION DESDE EL PERFIL DE USUARIO
                     //else 
                     if(usuario.Clave==null)//si es el formulario de edicion de los datos sin la clave
                     {
@@ -173,14 +182,16 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
                                 usuario.AvatarFile.CopyTo(stream);
                             }
                             repositorio.Modificacion(usuario);
-                            return RedirectToAction(vista);
+                          // ViewBag.Roles = Usuario.ObtenerRoles();
+                           // return RedirectToAction(vista);
                             // fin de edicion de avatar
 
-                      }  else { //si no viene con archivo de avatar obtengo los datos del avatar del usuario guardado y luego guardo
+                      }  //else { //si no viene con archivo de avatar obtengo los datos del avatar del usuario guardado y luego guardo
                             usuario.Avatar = usuarioActual.Avatar;
                             repositorio.Modificacion(usuario);
+                             ViewBag.Roles = Usuario.ObtenerRoles();
                             return RedirectToAction(vista);
-                            }
+                          //  }
                           
                     }// Fin edicion de datos sin clave
 
@@ -196,6 +207,7 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
                             numBytesRequested: 256 / 8));
                             claveNueva = hashed;
                         repositorio.ModificacionClave(usuarioActual.Id, claveNueva);
+                         ViewBag.Roles = Usuario.ObtenerRoles();
                         return RedirectToAction(vista);
                     }//FIN EDICION DE CLAVE
                 }//FIN DE EDICION DESDE EL PERFIL DE USUARIO
@@ -224,14 +236,18 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
                             usuario.AvatarFile.CopyTo(stream);
                         }
                         repositorio.Modificacion(usuario);
-                        return RedirectToAction(vista);
+                        ViewBag.Roles = Usuario.ObtenerRoles();
+                        //return Redirect(returnUrl);
                         // fin de edicion de avatar
 
-                  }  else { //si no viene con archivo de avatar obtengo los datos del avatar del usuario guardado y luego guardo
-                        usuario.Avatar = usuarioActual.Avatar;
+                  }  //else { //si no viene con archivo de avatar obtengo los datos del avatar del usuario guardado y luego guardo
+                       // usuario.Avatar = usuarioActual.Avatar;
                         repositorio.Modificacion(usuario);
-                        return RedirectToAction(vista);
-                        }
+                       // return RedirectToAction(vista);
+                       ViewBag.Roles = Usuario.ObtenerRoles();
+                       // return View(usuario);
+                         return Redirect(returnUrl);
+                      //  }
                       
                 }// Fin edicion de datos sin clave
 
@@ -246,7 +262,11 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
                         numBytesRequested: 256 / 8));
                         claveNueva = hashed;
                     repositorio.ModificacionClave(id, claveNueva);
-                    return RedirectToAction(vista);
+                    usuario=repositorio.ObtenerPorId(id);
+                   // return RedirectToAction(returnUrl, usuario);
+                     //  return RedirectToAction("returnUrl");
+                       return Redirect(returnUrl);
+                    
                 }
               
               

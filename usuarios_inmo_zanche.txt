@@ -1,0 +1,8 @@
+Administrador
+Usuario: dora@mail.com 
+Contraseña: 123456
+
+----------------------------
+Empleado
+usuario:carla@peterson.com
+constraseña: 123456

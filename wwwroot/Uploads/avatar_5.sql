@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-04-2022 a las 20:05:30
+-- Tiempo de generación: 22-04-2022 a las 02:37:30
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.0.13
 
@@ -61,7 +61,11 @@ INSERT INTO `contratos` (`id`, `fechaInicio`, `fechaFin`, `estado`, `precio`, `i
 (38, '2022-04-18', '2024-04-18', 'Vigente', 121212, 7, 3, '10', 'Miki', 'mouse', '24235'),
 (39, '2022-04-18', '2024-04-18', 'Vigente', 33333, 3, 11, '4324', 'IAN', 'MACALEN', '7574'),
 (41, '2022-04-18', '2024-04-18', 'Vigente', 45666, 12, 13, '35224545', 'Pipo', 'Pescador', '0800999888'),
-(42, '2024-04-20', '2026-04-20', 'No vigente', 80000, 12, 13, '35224545', 'Pipo', 'Pescador', '0800999888');
+(42, '2024-04-20', '2026-04-20', 'No vigente', 80000, 12, 13, '35224545', 'Pipo', 'Pescador', '0800999888'),
+(43, '2022-06-01', '2022-08-01', 'Vigente', 55000, 12, 13, '21434331', 'John', 'Jofa', '34353322'),
+(44, '2022-04-20', '2024-04-20', 'Vigente', 45000, 9, 1, '000000', 'Caisedo', 'Diega', '545451'),
+(45, '2022-04-20', '2024-04-20', 'Vigente', 80000, 9, 1, '45687885', 'John', 'hurtis', '24564654'),
+(46, '2022-08-01', '2023-08-01', 'Vigente', 50000, 3, 11, '45687885', 'Jimy', 'Hurtis', '3435335');
 
 -- --------------------------------------------------------
 
@@ -150,7 +154,8 @@ INSERT INTO `pagos` (`id`, `nroPago`, `fechaPago`, `importe`, `contratoId`) VALU
 (23, 2, '2022-05-11 00:00:00', '30000.00', 21),
 (25, 1, '2022-04-18 00:00:00', '45666.00', 41),
 (26, 2, '2022-05-18 00:00:00', '45666.00', 41),
-(27, 3, '2022-06-18 00:00:00', '45666.00', 41);
+(27, 3, '2022-06-18 00:00:00', '45666.00', 41),
+(28, 3, '2022-04-19 00:00:00', '25000.00', 8);
 
 -- --------------------------------------------------------
 
@@ -199,7 +204,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `avatar`, `email`, `clave`, `rol`) VALUES
-(1, 'Carla Sofia', 'Petersons', '/Uploads\\avatar_1.jpg', 'carla@peterson.com', 'GjzAhuy78NH4O47XGFAHPsEk/lJVCR72X7szOdJVPJA=', 3),
+(1, 'Carla ', 'Petersons', '/Uploads\\avatar_1.jpg', 'carla@peterson.com', 'GjzAhuy78NH4O47XGFAHPsEk/lJVCR72X7szOdJVPJA=', 3),
 (2, 'Pablo', 'Perez', '/Uploads\\avatar_2.jfif', 'pablo@perez.com', 'Es8xLXaQWGPhWN3ndWBEt8ZN7E8T+pDeqi210bMoJsI=', 3),
 (3, 'Marcelo', 'Gaich', '/Uploads\\avatar_3.jpeg', 'marce@mail.com', 'GjzAhuy78NH4O47XGFAHPsEk/lJVCR72X7szOdJVPJA=', 2),
 (5, 'Dora', 'Exloradora', '/Uploads\\avatar_5.jpeg', 'dora@mail.com', 'GjzAhuy78NH4O47XGFAHPsEk/lJVCR72X7szOdJVPJA=', 2);
@@ -256,7 +261,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `contratos`
 --
 ALTER TABLE `contratos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT de la tabla `inmuebles`
@@ -274,7 +279,7 @@ ALTER TABLE `inquilinos`
 -- AUTO_INCREMENT de la tabla `pagos`
 --
 ALTER TABLE `pagos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de la tabla `propietarios`
