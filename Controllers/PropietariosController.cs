@@ -154,11 +154,15 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
             }
         }
 
-             public IActionResult Buscar(int q)
+   
+
+         // GET: Propietario/Buscar/5
+        [Route("[controller]/Buscar/{q}", Name = "Buscar")]
+        public IActionResult Buscar(string q)
         {
             try
             {
-                var res = repositorio.ObtenerPorId(q);
+                var res = repositorio.ObtenerPorNombre(q);
                 return Json(new { Datos = res });
             }
             catch (Exception ex)

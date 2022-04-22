@@ -2,7 +2,27 @@
 
 @{
     ViewData["Title"] = "Nuevo contrato";
+
 }
+
+@*  ALERTAS PERSONALIZADAS DE PANTALLA*@
+		<div class="">
+		@if (TempData["Error"] != null)
+      
+
+			{//alta exitosa
+       var error= TempData["Error"];
+       
+				<div class="alert alert-danger alert-dismissible fade show" role="alert">
+					<strong>¡Error!</strong> El inmueble  codigo @ViewBag.Inmueble.Id -  Direccion: @ViewBag.Inmueble.Direccion ,  tiene contratos vigentes en el rango de fechas indicadas. Fecha Inicio: @ViewBag.contrato.FechaInicio.ToShortDateString()   Fecha fin: @ViewBag.contrato.FechaFin.ToShortDateString() 
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true"><span class="lnr lnr-cross-circle"></span></span>
+					</button>
+				</div>
+			}			
+		</div>
+@*FIN ALERTAS PERSONALIZADAS*@
+
 
 
 <h4>Nuevo contrato</h4>
@@ -63,7 +83,7 @@
                 <select class="form-select" name="InmuebleId">
                   <option value="" disabled selected>Seleccionar inmueble  </option>
                     @foreach (var item in 
-                    (IList<Inmueble>)ViewBag.Inmueble)
+                    (IList<Inmueble>)ViewBag.Inmuebles)
                     {
                         <option value="@item.Id">@(item.Id + " " + item.Direccion)</option>
                     }

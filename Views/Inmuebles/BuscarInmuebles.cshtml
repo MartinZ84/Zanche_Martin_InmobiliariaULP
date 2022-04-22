@@ -1,0 +1,211 @@
+@model IEnumerable<Zanche_Martin_InmobiliariaULP.Models.Inmueble>
+
+@{
+    ViewData["Title"] = "Buscar Inmueble";
+
+}
+<div class="row">   
+  <h4 class="col-auto me-auto">Buscar Inmueble</h4>
+  <a asp-action="Index" class="btn btn-secondary col-auto">Volver al listado</a>
+  </div>
+
+
+
+
+<hr />
+<div class="container ">
+  <div class="card w-100 mb-3">
+  
+    <div class="card-body">
+            <div class="card-title">
+                <h5>Ingresar los datos de búsqueda</h5>
+          @* <div class="row"> 
+            <div class="form-group "> 
+              <h5>Buscar Inmueble</h5>
+              </div>   
+          </div> *@
+        </div>
+      <form asp-action="BuscarInmuebles">
+  
+        <div class="row">   
+
+                @* <div class="form-group col-md-4">
+                    <label for="Uso" class="control-label">Uso</label>
+                    <select class="form-select" value="Seleccionar uso" Disable name="Uso" id="Uso">
+                      <option value="" disabled selected>Seleccionar uso  </option>
+                      <option value="Residencial">Residencial</option>
+                      <option value="Comercial">Comercial</option>
+                    </select>
+                    <span for="Uso" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label name="Tipo" class="control-label">Tipo</label>
+                    <select class="form-select" value="Seleccionar tipo" Disable name="Tipo" id="Tipo">
+                      <option value="" disabled selected>Seleccionar tipo  </option>
+                      <option value="Casa">Casa</option>
+                      <option value="Departamento">Departamento</option>
+                      <option value="Local">Local</option>
+                      <option value="Oficina">Oficina</option>
+                      <option value="Deposito">Depósito</option>
+                    </select>
+                    <span for="Tipo" class="text-danger"></span>
+                </div>
+            </div> *@
+            @* <div class="row">               
+                  <div class="form-group col-md-4">
+                      <label name="Ambientes" class="control-label">Ambientes</label>
+                      <input name="Ambientes" class="form-control" />
+                      <span for="Ambientes" class="text-danger"></span>
+                  </div>
+                  <div class="form-group col-md-4">
+                      <label name="Precio" class="control-label">Precio</label>
+                      <input name="Precio" id="Precio" class="form-control" />
+                      <span name="Precio" class="text-danger"></span>
+                  </div>
+                  <div class="form-group col-md-4">
+                      <label name="Superficie" class="control-label"> Superficie en mt2</label>
+                      <input name="Superficie" class="form-control" />
+                      <span for="Superficie" class="text-danger"></span>
+                  </div>
+              </div> *@
+              <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="FechaInicio" class="control-label">Fecha Inicio</label>
+                    @if(ViewBag.FechaInicio != null){
+                      var fechaInicio=ViewBag.FechaInicio.ToString("yyyy-MM-dd h:mm tt");
+                    <input type="date" name="FechaInicio" id="FechaInicio" class="form-control" value=@fechaInicio />
+                    } else {
+                    <input type="date" name="FechaInicio" id="fechaInicio" value="" 
+                      min="" max="" class="form-control" />
+                    }
+                    <span for="FechaInicio" class="text-danger"></span>
+                  </div>
+                  <div class="form-group col-md-4">
+                      <label for="FechaFin" class="control-label">Fecha Fin</label>
+                      @if(ViewBag.FechaFin != null){
+                          var fechaFin=ViewBag.FechaFin.ToString("yyyy-MM-dd h:mm tt");
+                      <input type="date" name="FechaFin" id="FechaFin" class="form-control" value=@fechaFin />
+                      } else {
+                      
+                      <input type="date" name="FechaFin" id="fechaFin" value="" class="form-control" />
+                      }
+                      <span for="FechaFin" class="text-danger"></span>
+                  </div>
+                   <div class="form-group col-md-2">
+                   <label for="" class="control-label"></label>
+                    <input type="submit" value="Buscar" class="btn btn-primary form-control" />
+                </div>
+               </div> 
+               
+            
+      
+      </form>
+     </div>
+     
+  </div>
+</div>
+
+    <div class="card w-100 mb-3">
+      <div class="card-body">
+          <table class="table">
+              <thead>
+                  <tr>
+                      <th>
+                          Cod
+                      </th>
+                      <th>
+                          @Html.DisplayNameFor(model => model.Direccion)
+                      </th>
+                      <th>
+                          Amb
+                      </th>
+                      <th>
+                          @Html.DisplayNameFor(model => model.Tipo)
+                      </th>
+                      <th>
+                          @Html.DisplayNameFor(model => model.Uso)
+                      </th>
+                      <th>
+                          @Html.DisplayNameFor(model => model.Precio)
+                      </th>
+                      <th>
+                          Mt2
+                      </th>
+                      @* <th>
+                          @Html.DisplayNameFor(model => model.Latitud)
+                      </th>
+                      *@
+                      <th>
+                          @Html.DisplayNameFor(model => model.Estado)
+                      </th> 
+                      <th>
+                          @Html.DisplayNameFor(model => model.PropietarioId)
+                      </th>
+                      <th></th>
+                  </tr>
+              </thead>
+              <tbody>
+          @if(Model.Count() > 0){
+              @foreach (var item in Model) {
+                  <tr>
+                      <td>
+                          @Html.DisplayFor(modelItem => item.Id)
+                      </td>
+                      <td>
+                          @Html.DisplayFor(modelItem => item.Direccion)
+                      </td>
+                      <td>
+                          @Html.DisplayFor(modelItem => item.Ambientes)
+                      </td>
+                      <td>
+                          @Html.DisplayFor(modelItem => item.Tipo)
+                      </td>
+                      <td>
+                          @Html.DisplayFor(modelItem => item.Uso)
+                      </td>
+                      <td>
+                          @Html.DisplayFor(modelItem => item.Precio)
+                      </td>
+                      <td>
+                          @Html.DisplayFor(modelItem => item.Superficie)
+                      </td>
+                      @* <td>
+                          @Html.DisplayFor(modelItem => item.Latitud)
+                      </td>*@
+                      <td>
+                          @Html.DisplayFor(modelItem => item.Estado)
+                      </td>
+                      <td>
+                          @(item.Duenio.Nombre + " " + item.Duenio.Apellido)
+                          @* @Html.DisplayFor(modelItem => item.PropietarioId) *@
+                      </td>
+                      <td>
+                        <div class="dropdown text-light" >
+                                            <a class="btn btn-outline-success dropdown-toggle" href="#" role="button" id="userMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent" data-display="static">
+                                              <span class="lnr lnr-user"></span> Acciones
+                                            </a>
+
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                  @Html.ActionLink("Editar", "Edit", new {  id=item.Id },new {@class="dropdown-item text-dark"})
+                                                  @Html.ActionLink("Detalles", "Details", new {  id=item.Id },new {@class="dropdown-item text-dark"}) 
+                                                  @Html.ActionLink("Borrar", "Delete", new {  id=item.Id  }, new {@class="dropdown-item text-dark"}) 
+                                                @Html.ActionLink("Contratos", "ContratosInmueble","Contratos", new {  id = item.Id }, new {@class="dropdown-item text-dark"})
+                                            </div>
+                                        </div>  
+                    </td>
+                  </tr>
+          }
+          }
+              
+
+              </tbody>
+          </table>
+    </div>
+   </div>
+<div>
+    
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

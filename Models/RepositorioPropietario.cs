@@ -123,6 +123,37 @@ public class RepositorioPropietario : RepositorioBase{
 			return p;
 		}
 
+    	public Propietario? ObtenerPorNombre(string nombre)
+		{
+			Propietario? p = null;
+			using (MySqlConnection connection = new MySqlConnection(connectionString))
+			{
+				string sql = $"SELECT Id, Nombre, Apellido, Dni, Telefono, Email" +
+                    $" FROM Propietarios" + $" WHERE Nombre=@nombre";
+				using (MySqlCommand command = new MySqlCommand(sql, connection))
+				{
+					// command.CommandType = CommandType.Text;
+          	command.Parameters.AddWithValue($"@{nameof(nombre)}", nombre);
+					connection.Open();
+					var reader = command.ExecuteReader();
+					if  (reader.Read())
+					{
+						 p = new Propietario
+						{
+							Id = reader.GetInt32(0),
+							Nombre = reader.GetString(1),
+							Apellido = reader.GetString(2),
+							Dni = reader.GetString(3),
+							Telefono = reader.GetString(4),
+							Email = reader.GetString(5),
+						};						
+					}
+					connection.Close();
+				}
+			}
+			return p;
+		}
+
 public int Baja(int id)
 		{
 			int res = -1;

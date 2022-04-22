@@ -190,6 +190,7 @@ namespace Zanche_Martin_InmobiliariaULP{
 				using (MySqlCommand command = new MySqlCommand(sql, connection))
 				{
 					//command.CommandType = CommandType.Text;
+          
 					connection.Open();
 					var reader = command.ExecuteReader();
 					while (reader.Read())
@@ -310,6 +311,86 @@ namespace Zanche_Martin_InmobiliariaULP{
 			}
 			return res;
 		}
+     public IList<Inmueble> BuscarInmuebles(string Uso, string Tipo, int Ambientes, int Superficie, int Precio, DateTime FechaInicio, DateTime FechaFin)
+		{
+			IList<Inmueble> res = new List<Inmueble>();
+			using (MySqlConnection connection = new MySqlConnection(connectionString))
+			{
+				string sql = "SELECT DISTINCT  i.Id, Direccion, Ambientes, Superficie, Tipo, Uso, i.Precio,Latitud, Longitud, i.Estado, PropietarioId, "+	 "p.Nombre, p.Apellido" +
+                           " FROM Inmuebles i " +
+                     "INNER JOIN Propietarios p ON i. PropietarioId = p.Id " +
+                
+                    " WHERE i.Estado= 'Disponible' AND  " +
+                    "i.id NOT IN ( " +
+                    "SELECT  CONTRATOS.inmuebleId FROM contratos WHERE  (( contratos.fechaInicio  between @FechaInicio and @FechaFin) " +
+                              " OR (contratos.fechaFin  between @FechaInicio and @FechaFin))  ) " ;
+				using (MySqlCommand command = new MySqlCommand(sql, connection))
+				{
+					//command.CommandType = CommandType.Text;
+           command.Parameters.AddWithValue($"@{nameof(FechaInicio)}", FechaInicio);
+            command.Parameters.AddWithValue($"@{nameof(FechaFin)}", FechaFin);
+					connection.Open();
+					var reader = command.ExecuteReader();
+					while (reader.Read())
+					{
+						Inmueble inmueble = new Inmueble
+						{
+						              	Id = reader.GetInt32(0),
+                            Direccion = reader.GetString(1),
+                            Ambientes = reader.GetInt32(2),
+                            Superficie = reader.GetInt32(3),
+                            Tipo=reader.GetString(4),
+                            Uso=reader.GetString(5),
+                            Precio=reader.GetInt32(6),
+                            Latitud = reader.GetDecimal(7),
+                            Longitud = reader.GetDecimal(8),
+                            Estado = reader.GetString(9),
+                            PropietarioId= reader.GetInt32(10),
+                            Duenio = new Propietario
+                            {
+                                Id = reader.GetInt32(10),
+                                Nombre = reader.GetString(11),
+                                Apellido = reader.GetString(12),
+							}
+						};
+						res.Add(inmueble);
+					}
+					connection.Close();
+				}
+			}
+			return res;
+		}
 
+     public int BuscarDisponibilidad(int InmuebleId,DateTime FechaInicio, DateTime FechaFin)
+		{
+			int res = 0;
+			using (MySqlConnection connection = new MySqlConnection(connectionString))
+			{
+				string sql = "SELECT COUNT(CONTRATOS.inmuebleId) " +
+                         "FROM contratos WHERE " +
+                          "CONTRATOS.inmuebleId=@inmuebleId " + " AND " +
+                         "(( contratos.fechaInicio  between @FechaInicio and @FechaFin) " +
+                              " OR (contratos.fechaFin  between @FechaInicio and @FechaFin)) " ;
+				using (MySqlCommand command = new MySqlCommand(sql, connection))
+				{
+					//command.CommandType = CommandType.Text;
+          command.Parameters.AddWithValue($"@{nameof(InmuebleId)}", InmuebleId);
+           command.Parameters.AddWithValue($"@{nameof(FechaInicio)}", FechaInicio);
+            command.Parameters.AddWithValue($"@{nameof(FechaFin)}", FechaFin);
+					connection.Open();
+					var reader = command.ExecuteReader();
+          	if (reader.Read())
+					{
+            res = reader.GetInt32(0);
+					};
+			
+					}
+					connection.Close();
+				
+			}
+			return res;
+		
+
+   }
   }
 }

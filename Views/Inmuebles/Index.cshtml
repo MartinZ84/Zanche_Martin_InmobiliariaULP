@@ -8,9 +8,11 @@
 <hr>
 <div class="row">   
        <a asp-action="Create"class="btn btn-primary col-auto me-auto">Nuevo</a>
+       <a asp-controller="Inmuebles" asp-action="BuscarInmuebles" class="btn btn-outline-success col-auto">Buscar Inmuebles</a>
       <a asp-controller="Inmuebles" asp-action="InmDisp" class="btn btn-outline-primary col-auto">Inmuebles disponibles</a>
       <a asp-controller="Inmuebles" asp-action="InmnoDisp" class="btn btn-outline-primary col-auto">Inmuebles no disponibles</a>
         <a asp-controller="Inmuebles" asp-action="InmProp" class="btn btn-outline-dark col-auto">Inmuebles por propietario</a>
+        
       @* <a asp-action="Index" class="btn btn-primary col-2">Nuevo pago</a> 
       <a href="#" onClick="history.back();"class="btn btn-secondary col-2">Volver</a>   *@
   </div>

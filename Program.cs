@@ -8,11 +8,12 @@ builder.Services.AddControllersWithViews();
 //Agregar servicios de autoriazación 
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy("Administrador", policy => policy.RequireClaim("Administrador"));
-    options.AddPolicy("Usuario", policy => policy.RequireClaim("Usuario"));
-    options.AddPolicy("Empleado", policy => policy.RequireClaim("Empleado"));
+  
+    // options.AddPolicy("Administrador", policy => policy.RequireClaim("Administrador"));
+    // options.AddPolicy("Usuario", policy => policy.RequireClaim("Usuario"));
+    // options.AddPolicy("Empleado", policy => policy.RequireClaim("Empleado"));
     //agregar políticas de autorización en empleados para que deje tambien a administrador y superadministrador
-      options.AddPolicy("Empleado", policy => policy.RequireRole("Empleado"));
+     options.AddPolicy("Empleado", policy => policy.RequireRole("Empleado", "Administrador", "SuperAdministrador"));
     options.AddPolicy("Administrador", policy => policy.RequireRole("Administrador", "SuperAdministrador"));
 });       
 

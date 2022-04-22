@@ -1,9 +1,10 @@
 @model Zanche_Martin_InmobiliariaULP.Models.Contrato
 
 @{
-    ViewData["Title"] = "Contrato - Editar";
-    var Inquilinos= (IList<Inquilino>)ViewBag.Inquilinos;
-    var Inmuebles= (IList<Inmueble>)ViewBag.Inmuebles; 
+    ViewData["Title"] = "Contrato - Renovar";
+       var Inquilino= ViewBag.Inquilino;
+    var Inmueble= ViewBag.Inmueble;
+    var Propietario= ViewBag.Propietario;
 }
 
 <h1>Renovar contrato</h1>
@@ -14,11 +15,7 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @* <div class="form-group">
-                <label asp-for="Id" class="control-label"></label>
-                <input asp-for="Id" class="form-control"  disabled/>
-                <span asp-validation-for="Id" class="text-danger"></span>
-            </div> *@
+          
             <div class="form-group">
                 <label asp-for="FechaInicio" class="control-label"></label> 
                   <input asp-for="FechaInicio" class="form-control" />
@@ -48,24 +45,23 @@
             </div>
             <div class="form-group">
                 <label asp-for="InquilinoId" class="control-label"></label>
+                     <input asp-for="InquilinoId" class="form-control" hidden/> 
+                    @{var inq= @ViewBag.Inquilino.Nombre + " " + @ViewBag.Inquilino.Apellido ;}
+                     <input value="@inq" class="form-control" disabled  />
                 @* <input asp-for="InquilinoId" class="form-control" /> *@
-                <select class="form-select" name="InquilinoId">
+                @* <select class="form-select" name="InquilinoId">
                     @foreach (var item in Inquilinos)
                     {
                         @:<option @(item.Id==Model.InquilinoId ? "selected" : "") value="@item.Id">@(item.Nombre + " " + item.Apellido)</option>
                     }
-                </select>
+                </select> *@
                 <span asp-validation-for="InquilinoId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="InmuebleId" class="control-label"></label>
-                @* <input asp-for="InmuebleId" class="form-control" /> *@
-                <select class="form-select" name="InmuebleId">
-                    @foreach (var item in Inmuebles)
-                    {
-                        @:<option @(item.Id==Model.InmuebleId ? "selected" : "") value="@item.Id">@(item.Id + " " + item.Direccion)</option>
-                    }
-                </select>
+                 <input asp-for="InmuebleId" class="form-control" hidden/> 
+                    @{var inm= @ViewBag.Inmueble.Id + " " + @ViewBag.Inmueble.Direccion ;}
+                 <input value="@inm" class="form-control"  disabled/>
                 <span asp-validation-for="InmuebleId" class="text-danger"></span>
             </div>
             <div class="form-group">

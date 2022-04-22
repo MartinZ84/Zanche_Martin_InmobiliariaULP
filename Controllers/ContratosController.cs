@@ -14,6 +14,7 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
       RepositorioContrato repositorio;
       RepositorioInmueble repoInmueble;
       RepositorioInquilino repoInquilino;
+      RepositorioPropietario repoPropietario;
 
  public ContratosController (IConfiguration config)
       {
@@ -21,6 +22,7 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
         repositorio =new RepositorioContrato(config);
         repoInmueble= new RepositorioInmueble(config);
         repoInquilino= new RepositorioInquilino(config);
+        repoPropietario= new RepositorioPropietario(config);
       }
         // GET: Contratos
          [Authorize(Policy = "Empleado")]
@@ -39,8 +41,10 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
         public ActionResult Details(int id)
         {
           
-              var contrato = repositorio.ObtenerPorId(id);
-            ViewBag.Inquilinos = repoInquilino.ObtenerTodos();ViewBag.Inmuebles = repoInmueble.ObtenerTodos();
+            var contrato = repositorio.ObtenerPorId(id);
+            ViewBag.Inquilino = repoInquilino.ObtenerPorId(contrato.InquilinoId);
+            ViewBag.Inmueble = repoInmueble.ObtenerPorId(contrato.InmuebleId);
+            ViewBag.Propietario=repoPropietario.ObtenerPorId(ViewBag.Inmueble.PropietarioId);
             if (TempData.ContainsKey("Mensaje"))
                 ViewBag.Mensaje = TempData["Mensaje"];
             if (TempData.ContainsKey("Error"))
@@ -57,7 +61,7 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
           TempData.Remove("returnUrl");
           var returnUrl = "/Contratos";
             ViewBag.Inquilino=repoInquilino.ObtenerTodos();
-            ViewBag.Inmueble=repoInmueble.ObtenerTodos();
+            ViewBag.Inmuebles=repoInmueble.ObtenerTodosDisponibles();
             TempData["returnUrl"] = returnUrl;
             return View();
         }
@@ -69,7 +73,7 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
            var returnUrl = "/Contratos/ContratosInmueble/"+id ; 
       
             ViewBag.Inquilino=repoInquilino.ObtenerTodos();
-            ViewBag.Inmueble=repoInmueble.ObtenerPorId(id);
+            ViewBag.Inmuebles=repoInmueble.ObtenerPorId(id);
            TempData["returnUrl"] = returnUrl;
             return View();
         }
@@ -81,18 +85,38 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
          [Authorize(Policy = "Empleado")]
         public ActionResult Create(Contrato contrato)
         {
-           var urlOrigen=TempData["returnUrl"].ToString();
+           
+           var urlOrigen="";
+          if(TempData.ContainsKey("returnUrl")){
+                 urlOrigen=TempData["returnUrl"].ToString();}
+          else
+          {
+              urlOrigen = "/Contratos/ContratosInmueble/"+contrato.InmuebleId ; 
+              TempData["returnUrl"] = urlOrigen;      
+          }
             try
-            {
-               
-               
+            {               
                  if (ModelState.IsValid)
                   {
-                      repositorio.Alta(contrato);
+                      var res=repoInmueble.BuscarDisponibilidad(contrato.InmuebleId,contrato.FechaInicio,contrato.FechaFin);
+                      if(res >0){
+                        TempData["Error"] = "No hay disponibilidad para el periodo seleccionado";
+                        ViewBag.Inquilino=repoInquilino.ObtenerTodos();
+                        ViewBag.Inmuebles=repoInmueble.ObtenerTodos();
+                        ViewBag.Inmueble=repoInmueble.ObtenerPorId(contrato.InmuebleId);
+                        ViewBag.Contrato=contrato;
+                        TempData["returnUrl"] = urlOrigen;        
+                        return View(contrato);
+                      } else
+                      {
+                       repositorio.Alta(contrato);
                       TempData["Id"] = contrato.Id;
-                    
+
+                      }
+                                          
                       // return RedirectToAction(nameof(Index));
                       if(TempData.ContainsKey("returnUrl")){
+                        urlOrigen = "/Contratos/ContratosInmueble/"+contrato.InmuebleId ; 
                         return Redirect(urlOrigen);
                       }
                       else{
@@ -192,15 +216,22 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
          [Authorize(Policy = "Empleado")]
         public ActionResult Renovar(int id)
         {
+           TempData.Remove("returnUrl");
+          
             var contrato = repositorio.ObtenerPorId(id);
             contrato.FechaInicio=contrato.FechaInicio.Date.AddDays(2);
             contrato.FechaFin=contrato.FechaInicio.AddYears(2);
-            
-            ViewBag.Inquilinos = repoInquilino.ObtenerTodos();ViewBag.Inmuebles = repoInmueble.ObtenerTodos();
+              
+            ViewBag.Inquilino = repoInquilino.ObtenerPorId(contrato.InquilinoId);
+            ViewBag.Inmueble = repoInmueble.ObtenerPorId(contrato.InmuebleId);
+            ViewBag.Propietario=repoPropietario.ObtenerPorId(ViewBag.Inmueble.PropietarioId);
+             var returnUrl = "/Contratos/ContratosInmueble/"+contrato.InmuebleId; 
+         
             if (TempData.ContainsKey("Mensaje"))
                 ViewBag.Mensaje = TempData["Mensaje"];
             if (TempData.ContainsKey("Error"))
                 ViewBag.Error = TempData["Error"];
+            TempData["returnUrl"] = returnUrl;
             return View(contrato);
         }
 
@@ -211,7 +242,7 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
             ViewBag.inmuebleCod=inmuebleSolicitado.Id;
             ViewBag.InmuebleDireccion=inmuebleSolicitado.Direccion;           
             // ViewBag.Inquilinos = repoInquilino.ObtenerTodos();
-            // ViewBag.Inmuebles = repoInmueble.ObtenerTodos();
+            ViewBag.Inmueble = inmuebleSolicitado;
             if (TempData.ContainsKey("Mensaje"))
                 ViewBag.Mensaje = TempData["Mensaje"];
             if (TempData.ContainsKey("Error"))

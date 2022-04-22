@@ -16373,6 +16373,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\Facultad ULP Martin\\.Net\\Zanche_Martin_InmobiliariaULP\\Views\\Inmuebles\\BuscarInmuebles.cshtml",
+      "TargetPath": "Views\\Inmuebles\\BuscarInmuebles.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\Facultad ULP Martin\\.Net\\Zanche_Martin_InmobiliariaULP\\Views\\Contratos\\Edit.cshtml",
       "TargetPath": "Views\\Contratos\\Edit.cshtml",
       "FileKind": "mvc"

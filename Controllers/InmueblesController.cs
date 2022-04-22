@@ -183,6 +183,41 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
             }
         }
 
+       [Authorize(Policy = "Empleado")]
+        public ActionResult BuscarInmuebles()
+        {
+          try
+          {
+            var res= new List<Inmueble>();
+            return View(res);
+          }
+           catch (Exception ex)
+          {
+               return Json(new { Error = ex.Message });
+            }
+          }
+          
+      [HttpPost]
+       [Authorize(Policy = "Empleado")]
+        public ActionResult BuscarInmuebles(string Uso, string Tipo,int Ambientes, int Precio, int Superficie, DateTime FechaInicio, DateTime FechaFin)
+        {
+            try
+            {
+             
+              var res = repositorio.BuscarInmuebles(Uso, Tipo, Ambientes, Precio, Superficie, FechaInicio, FechaFin);
+              ViewBag.FechaInicio = FechaInicio;
+              ViewBag.FechaFin = FechaFin;
+              return View("BuscarInmuebles", res);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Error = ex.Message });
+            }
+          }
+         
+        }
+
+
       // [Route("[controller]/GetInmueblesByPropietario/{q}", Name = "GetInmueblesByPropietario")]
       //   public ActionResult GetInmueblesByPropietario(int id)
       //   {
@@ -199,4 +234,3 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
       //       }
       //   }
     }
-}

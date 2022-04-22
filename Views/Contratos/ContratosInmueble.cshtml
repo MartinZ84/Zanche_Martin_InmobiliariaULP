@@ -15,8 +15,10 @@
 
 <div class="container">
    <div class="row justify-content-between">   
-      
+      @if(@ViewBag.Inmueble.Estado=="Disponible"){
         <a href=@crear class="btn btn-primary col-2">Crear contrato</a>
+      } else {<button  class="btn btn-primary col-2" disabled>Crear contrato</button>}
+        
       <a asp-controller="Inmuebles" asp-action="Index" class="btn btn-secondary col-2">Volver a Inmuebles</a>
       @* <a asp-action="Index" class="btn btn-primary col-2">Nuevo pago</a> 
       <a href="#" onClick="history.back();"class="btn btn-secondary col-2">Volver</a>   *@

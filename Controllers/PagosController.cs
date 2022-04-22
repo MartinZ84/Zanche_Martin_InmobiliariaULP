@@ -15,6 +15,7 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
       RepositorioContrato repoContrato;
        RepositorioInmueble repoInmueble;
       RepositorioInquilino repoInquilino;
+         RepositorioPropietario repoPropietario;
       public PagosController (IConfiguration config)
       {
         
@@ -22,6 +23,8 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
         repoContrato= new RepositorioContrato(config);
         repoInmueble= new RepositorioInmueble(config);
         repoInquilino= new RepositorioInquilino(config);
+        repoPropietario= new RepositorioPropietario(config);
+      
       }
         // GET: Pagos
         [Authorize(Policy = "Empleado")]
@@ -39,7 +42,9 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
             var pago = repositorio.ObtenerPorId(id);
             ViewBag.Contrato=repoContrato.ObtenerPorId(pago.ContratoId);
              ViewBag.ContratoId = pago.ContratoId;
-            // ViewBag.Inquilinos = repoInquilino.ObtenerTodos();ViewBag.Inmuebles = repoInmueble.ObtenerTodos();
+            ViewBag.Inquilino = repoInquilino.ObtenerPorId(ViewBag.Contrato.InquilinoId);
+            ViewBag.Inmueble = repoInmueble.ObtenerPorId(ViewBag.Contrato.InmuebleId);
+            ViewBag.Propietario=repoPropietario.ObtenerPorId(ViewBag.Inmueble.PropietarioId);
             if (TempData.ContainsKey("Mensaje"))
                 ViewBag.Mensaje = TempData["Mensaje"];
             if (TempData.ContainsKey("Error"))
