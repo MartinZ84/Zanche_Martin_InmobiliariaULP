@@ -136,7 +136,7 @@ namespace Zanche_Martin_InmobiliariaULP.Controllers
         // POST: Inmuebles/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-         [Authorize(Policy = "Empleado")]
+         [Authorize(Policy = "Administrador")]
         public ActionResult Delete(int id, Inmueble inmueble)
         {
             try

@@ -318,12 +318,12 @@ namespace Zanche_Martin_InmobiliariaULP{
 			{
 				string sql = "SELECT DISTINCT  i.Id, Direccion, Ambientes, Superficie, Tipo, Uso, i.Precio,Latitud, Longitud, i.Estado, PropietarioId, "+	 "p.Nombre, p.Apellido" +
                            " FROM Inmuebles i " +
-                     "INNER JOIN Propietarios p ON i. PropietarioId = p.Id " +
+                     "INNER JOIN Propietarios p ON i.PropietarioId = p.Id " +
                 
                     " WHERE i.Estado= 'Disponible' AND  " +
                     "i.id NOT IN ( " +
                     "SELECT  CONTRATOS.inmuebleId FROM contratos WHERE  (( contratos.fechaInicio  between @FechaInicio and @FechaFin) " +
-                              " OR (contratos.fechaFin  between @FechaInicio and @FechaFin))  ) " ;
+                              " OR (contratos.fechaFin  between @FechaInicio and @FechaFin)  OR (contratos.fechaInicio <= @FechaInicio and contratos.fechaFin >@FechaFin) ) ) " ;
 				using (MySqlCommand command = new MySqlCommand(sql, connection))
 				{
 					//command.CommandType = CommandType.Text;
