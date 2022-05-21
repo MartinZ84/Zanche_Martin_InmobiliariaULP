@@ -1,11 +1,5 @@
 
 diagrama ER inmoulp.xml
 Diagrama Esquema inmoULP.drawio
-obj/Debug/net6.0/Zanche_Martin_InmobiliariaULP.assets.cache
-obj/Debug/net6.0/Zanche_Martin_InmobiliariaULP.GeneratedMSBuildEditorConfig.editorconfig
-obj/staticwebassets.pack.sentinel
-obj/Debug/net6.0/Zanche_Martin_InmobiliariaULP.assets.cache
-obj/Debug/net6.0/Zanche_Martin_InmobiliariaULP.GeneratedMSBuildEditorConfig.editorconfig
-obj/Debug/net6.0/Zanche_Martin_InmobiliariaULP.assets.cache
-obj/Debug/net6.0/Zanche_Martin_InmobiliariaULP.GeneratedMSBuildEditorConfig.editorconfig
-obj/Debug/net6.0/Zanche_Martin_InmobiliariaULP.GeneratedMSBuildEditorConfig.editorconfig
+obj/*
+

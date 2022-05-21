@@ -39,7 +39,7 @@ namespace Zanche_Martin_InmobiliariaULP{
                             Longitud = reader.GetDecimal(8),
                             Estado = reader.GetString(9),
                             PropietarioId= reader.GetInt32(10),
-                            Duenio = new Propietario
+                            Propietario = new Propietario
                             {
                                 Id = reader.GetInt32(10),
                                 Nombre = reader.GetString(11),
@@ -164,7 +164,7 @@ namespace Zanche_Martin_InmobiliariaULP{
                             Longitud = reader.GetDecimal(8),
                             Estado = reader.GetString(9),
                             PropietarioId = reader.GetInt32(10),
-                            Duenio = new Propietario
+                            Propietario = new Propietario
                             {
                                 Id = reader.GetInt32(10),
                                 Nombre = reader.GetString(11),
@@ -208,7 +208,7 @@ namespace Zanche_Martin_InmobiliariaULP{
                             Longitud = reader.GetDecimal(8),
                             Estado = reader.GetString(9),
                             PropietarioId= reader.GetInt32(10),
-                            Duenio = new Propietario
+                            Propietario = new Propietario
                             {
                                 Id = reader.GetInt32(10),
                                 Nombre = reader.GetString(11),
@@ -252,7 +252,7 @@ namespace Zanche_Martin_InmobiliariaULP{
                             Longitud = reader.GetDecimal(8),
                             Estado = reader.GetString(9),
                             PropietarioId= reader.GetInt32(10),
-                            Duenio = new Propietario
+                            Propietario = new Propietario
                             {
                                 Id = reader.GetInt32(10),
                                 Nombre = reader.GetString(11),
@@ -297,7 +297,7 @@ namespace Zanche_Martin_InmobiliariaULP{
                             Longitud = reader.GetDecimal(8),
                             Estado = reader.GetString(9),
                             PropietarioId= reader.GetInt32(10),
-                            Duenio = new Propietario
+                            Propietario = new Propietario
                             {
                                 Id = reader.GetInt32(10),
                                 Nombre = reader.GetString(11),
@@ -346,7 +346,7 @@ namespace Zanche_Martin_InmobiliariaULP{
                             Longitud = reader.GetDecimal(8),
                             Estado = reader.GetString(9),
                             PropietarioId= reader.GetInt32(10),
-                            Duenio = new Propietario
+                            Propietario = new Propietario
                             {
                                 Id = reader.GetInt32(10),
                                 Nombre = reader.GetString(11),

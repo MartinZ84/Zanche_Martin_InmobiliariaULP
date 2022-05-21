@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Zanche_Martin_InmobiliariaULP.Models;
 
-public class Inmueble
+public class InmuebleView
 {
   [Key]
   [Display(Name= "Código")]
@@ -23,15 +23,23 @@ public class Inmueble
      
     public string ? Estado {get; set;}
 
-     [Display(Name = "Dueño")]
-     public int PropietarioId { get; set; }
+    	public string? Foto { get; set; } 
      
-    [ForeignKey(nameof(PropietarioId))]
-    public Propietario?  Propietario { get; set; }
-
-    	public string? Foto { get; set; }
-		[NotMapped]//Para EF
-		public IFormFile? FotoFile { get; set; }
-    
+   
+    public InmuebleView(Inmueble inm)
+    { 
+      this.Id=inm.Id;
+      this.Direccion=inm.Direccion;
+      this.Ambientes=inm.Ambientes;
+      this.Tipo=inm.Tipo;
+      this.Uso=inm.Uso;
+      this.Precio=inm.Precio;
+      this.Superficie=inm.Superficie;
+      this.Latitud=inm.Latitud;
+      this.Longitud=inm.Longitud;
+      this.Estado=inm.Estado;
+      this.Foto=inm.Foto;
+    }
+  
 
 }

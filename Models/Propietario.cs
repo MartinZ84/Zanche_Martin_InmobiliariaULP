@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Zanche_Martin_InmobiliariaULP.Models;
 
@@ -18,6 +19,10 @@ public class Propietario
   	[Required, EmailAddress]
    public string? Email { get ;set; }
 
-
+		[Required, DataType(DataType.Password)]
+		public string? Clave { get; set; }
+public string? Avatar { get; set; }
+		[NotMapped]//Para EF
+		public IFormFile? AvatarFile { get; set; }
 
 }

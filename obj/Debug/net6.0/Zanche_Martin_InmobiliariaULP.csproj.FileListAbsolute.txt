@@ -248,3 +248,15 @@ D:\Facultad ULP Martin\.Net\Zanche_Martin_InmobiliariaULP\obj\Debug\net6.0\Zanch
 D:\Facultad ULP Martin\.Net\Zanche_Martin_InmobiliariaULP\obj\Debug\net6.0\Zanche_Martin_InmobiliariaULP.genruntimeconfig.cache
 D:\Facultad ULP Martin\.Net\Zanche_Martin_InmobiliariaULP\obj\Debug\net6.0\ref\Zanche_Martin_InmobiliariaULP.dll
 D:\Facultad ULP Martin\.Net\Zanche_Martin_InmobiliariaULP\bin\Debug\net6.0\dotnet-watch.dll
+D:\Facultad ULP Martin\.Net\Zanche_Martin_InmobiliariaULP\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+D:\Facultad ULP Martin\.Net\Zanche_Martin_InmobiliariaULP\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\Facultad ULP Martin\.Net\Zanche_Martin_InmobiliariaULP\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\Facultad ULP Martin\.Net\Zanche_Martin_InmobiliariaULP\bin\Debug\net6.0\MySqlConnector.dll
+D:\Facultad ULP Martin\.Net\Zanche_Martin_InmobiliariaULP\bin\Debug\net6.0\Pomelo.EntityFrameworkCore.MySql.dll
+D:\Facultad ULP Martin\.Net\Zanche_Martin_InmobiliariaULP\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Facultad ULP Martin\.Net\Zanche_Martin_InmobiliariaULP\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Facultad ULP Martin\.Net\Zanche_Martin_InmobiliariaULP\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+D:\Facultad ULP Martin\.Net\Zanche_Martin_InmobiliariaULP\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+D:\Facultad ULP Martin\.Net\Zanche_Martin_InmobiliariaULP\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\Facultad ULP Martin\.Net\Zanche_Martin_InmobiliariaULP\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+D:\Facultad ULP Martin\.Net\Zanche_Martin_InmobiliariaULP\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll

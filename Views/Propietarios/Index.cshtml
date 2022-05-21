@@ -57,7 +57,9 @@
             <td>
                @Html.ActionLink("Editar", "Edit", new {  id=item.Id },new {@class="btn btn-success"}) |
                 @Html.ActionLink("Detalles", "Details", new {  id=item.Id },new {@class="btn btn-warning"}) |
-                @Html.ActionLink("Borrar", "Delete", new {  id=item.Id  }, new {@class="btn btn-danger"})
+                @* @Html.ActionLink("Borrar", "Delete", new {  id=item.Id  }, new {@class="btn btn-danger"}) *@
+               <a href='Propietarios/Delete/@item.Id' class="btn btn-danger"> Borrar</a>
+
             </td>
         </tr>
 }

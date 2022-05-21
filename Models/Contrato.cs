@@ -21,7 +21,7 @@ namespace Zanche_Martin_InmobiliariaULP.Models
      [Required]
     public int InmuebleId  { get; set; }
     public Inquilino? Inquilino { get; set; }
-    public Inmueble? Inmueble { get; set; }
+    public Inmueble? Inmueble {  get;   set; }
 
      [Display(Name= "DNI Garante")]
     public string ? Dni_Garante { get; set; }
