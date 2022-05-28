@@ -41,14 +41,14 @@ namespace Zanche_Martin_InmobiliariaULP.Api
 		{
 			try
 			{
-				contexto.Inmuebles
-                    .Include(x => x.Propietario)
-                    .Where(x => x.Propietario.Nombre == "")//.ToList() => lista de inmuebles
-                    .Select(x => x.Propietario)
-                    .ToList();//lista de propietarios
+				// contexto.Inmuebles
+        //             .Include(x => x.Propietario)
+        //             .Where(x => x.Propietario.Nombre == "")//.ToList() => lista de inmuebles
+        //             .Select(x => x.Propietario)
+        //             .ToList();//lista de propietarios
 				var usuario = User.Identity.Name;
-				contexto.Contratos.Include(x => x.Inquilino).Include(x => x.Inmueble).ThenInclude(x => x.Propietario)
-                    .Where(c => c.Inmueble.Propietario.Email == usuario);
+				// contexto.Contratos.Include(x => x.Inquilino).Include(x => x.Inmueble).ThenInclude(x => x.Propietario)
+        //             .Where(c => c.Inmueble.Propietario.Email == usuario);
 				/*var res = contexto.Propietarios.Select(x => new { x.Nombre, x.Apellido, x.Email })
                     .SingleOrDefault(x => x.Email == usuario);*/
 			//	return await contexto.Propietarios.SingleOrDefaultAsync(x => x.Email == usuario);
@@ -311,3 +311,17 @@ namespace Zanche_Martin_InmobiliariaULP.Api
 		}
 	}
 }
+//PARA RECIBIR LA IMAGEN DE BYTES DE Y GUARDARLA. lUEGO MANEJAR EL DOMINIO DESDE EL LADO DE LA ANDROID
+  //Path.GetFileName(u.AvatarFile.FileName);//este nombre se puede repetir
+// 										string fileName = "avatar_" + u.Id + Path.GetExtension(u.AvatarFileName);
+// 										string pathCompleto = Path.Combine(path, fileName);
+// 										u.Avatar = Path.Combine("/Uploads", fileName);
+// 										// Esta operación guarda la foto en memoria en la ruta que necesitamos
+// 										/*using (FileStream stream = new FileStream(pathCompleto, FileMode.Create))
+// 										{
+// 												u.AvatarFile.CopyTo(stream);
+// 										}*/
+									
+// 										System.IO.File.WriteAllBytes(pathCompleto, u.AvatarFileContent); repositorio.Modificacion(u);
+
+// }

@@ -19,7 +19,7 @@ public class Propietario
   	[Required, EmailAddress]
    public string? Email { get ;set; }
 
-		[Required, DataType(DataType.Password)]
+		[DataType(DataType.Password)]
 		public string? Clave { get; set; }
 public string? Avatar { get; set; }
 		[NotMapped]//Para EF

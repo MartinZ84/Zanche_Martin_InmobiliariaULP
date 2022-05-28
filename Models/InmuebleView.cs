@@ -5,6 +5,8 @@ namespace Zanche_Martin_InmobiliariaULP.Models;
 
 public class InmuebleView
 {
+  private IQueryable<Inmueble> inmuebles;
+
   [Key]
   [Display(Name= "Código")]
   [Required]
@@ -18,12 +20,13 @@ public class InmuebleView
     public string ? Uso {get; set;}
     public int Precio { get; set; }
 		public decimal Superficie { get; set; }
-		public decimal Latitud { get; set; }
-     public decimal Longitud { get; set; }
+		// public decimal Latitud { get; set; }
+    //  public decimal Longitud { get; set; }
      
-    public string ? Estado {get; set;}
+    public String ? Estado {get; set;}
+       public bool ? EstadoInmueble{get; set;}
 
-    	public string? Foto { get; set; } 
+    	public string? Imagen { get; set; } 
      
    
     public InmuebleView(Inmueble inm)
@@ -35,11 +38,16 @@ public class InmuebleView
       this.Uso=inm.Uso;
       this.Precio=inm.Precio;
       this.Superficie=inm.Superficie;
-      this.Latitud=inm.Latitud;
-      this.Longitud=inm.Longitud;
-      this.Estado=inm.Estado;
-      this.Foto=inm.Foto;
+    // this.Latitud=inm.Latitud;
+    // this.Longitud=inm.Longitud;
+    
+      this.Estado= inm.Estado;
+      this.EstadoInmueble=inm.EstadoInmueble;
+      this.Imagen=inm.Foto;
     }
-  
 
+  public InmuebleView(IQueryable<Inmueble> inmuebles)
+  {
+    this.inmuebles = inmuebles;
+  }
 }

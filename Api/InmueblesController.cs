@@ -35,8 +35,21 @@ namespace Zanche_Martin_InmobiliariaULP.Api
       try
       {
         var usuario = User.Identity.Name;
-        return Ok(contexto.Inmuebles.Include(e => e.Propietario).Where(e => e.Propietario.Email == usuario).Select(x => new InmuebleView(x))
-);
+        var inmuebles= (contexto.Inmuebles.Include(e => e.Propietario).Where(e => e.Propietario.Email == usuario));
+        //.Select(x => new InmuebleView(x)));
+        foreach (var i in inmuebles)
+        {
+          if(i.Estado.Equals("Disponible")){
+                i.EstadoInmueble=true;
+              } else
+              {
+                i.EstadoInmueble=false;
+              }
+        }
+        //cast to IQueryable<InmuebleView>
+        //var inmueblesView = inmuebles.Select(x => new InmuebleView(x));
+        //return Ok(inmueblesView);
+        return Ok(inmuebles.Select(x => new InmuebleView(x)));
       }
       catch (Exception ex)
       {
@@ -51,12 +64,22 @@ namespace Zanche_Martin_InmobiliariaULP.Api
       try
       {
         var usuario = User.Identity.Name;
-        return Ok(contexto.Inmuebles.Include(e => e.Propietario).Where(e => e.Propietario.Email == usuario)//.Select(x => new InmuebleView(x)));
-       .Single(e => e.Id == id));
+        var inmueble=contexto.Inmuebles.Include(e => e.Propietario).Where(e => e.Propietario.Email == usuario).Single(e => e.Id == id);
+      //   return Ok(contexto.Inmuebles.Include(e => e.Propietario).Where(e => e.Propietario.Email == usuario)//.Select(x => new InmuebleView(x)));
+      //  .Single(e => e.Id == id));
+      if(inmueble.Estado.Equals("Disponible")){
+        inmueble.EstadoInmueble=true;
+      } else
+      {
+        inmueble.EstadoInmueble=false;
       }
+
+      return Ok(new InmuebleView(inmueble));
+      }
+    
       catch (Exception ex)
       {
-        return BadRequest(ex);
+        return BadRequest("Inmuebles no encontrado" +"\r\n"+ ex) ;
       }
     }
 
@@ -109,11 +132,18 @@ namespace Zanche_Martin_InmobiliariaULP.Api
     {
       try
       {
+        if((bool)entidad.EstadoInmueble){
+            entidad.Estado="Disponible";
+          } else
+          {
+            entidad.Estado="No Disponible";
+          }
         Propietario p=contexto.Propietarios.Single(e => e.Email == User.Identity.Name);
         if (ModelState.IsValid && contexto.Inmuebles.AsNoTracking().Include(e => e.Propietario).FirstOrDefault(e => e.Id == id && p.Email==User.Identity.Name) != null)
         {
           entidad.Id = id;
           entidad.PropietarioId=p.Id;
+          
           contexto.Inmuebles.Update(entidad);
           contexto.SaveChanges();
           return Ok(entidad);
@@ -129,17 +159,25 @@ namespace Zanche_Martin_InmobiliariaULP.Api
     
     // PUT api/<controller>/5
     [HttpPut("CambiarEstado/{id}")]
-    public async Task<IActionResult> CambiarEstado(int id, [FromBody] Inmueble i)
+    public async Task<IActionResult> CambiarEstado(int id, [FromBody] InmuebleApi inmuebleApi)
     {
       try
       {
-        Propietario p=contexto.Propietarios.Single(e => e.Email == User.Identity.Name);
-        if (contexto.Inmuebles.Include(e => e.Propietario).FirstOrDefault(e => e.Id == id && p.Email==User.Identity.Name) != null)
+        Inmueble entidad = contexto.Inmuebles.Single(e => e.Id == id);
+        if (contexto.Inmuebles.AsNoTracking().Include(e => e.Propietario).FirstOrDefault(e => e.Id == id && e.Propietario.Email == User.Identity.Name) != null)
         {
-          var inmueble = contexto.Inmuebles.Single(e => e.Id == id);
-          inmueble.Estado=i.Estado;
+         // entidad.EstadoInmueble=EstadoInmueble;
+          if((bool)inmuebleApi.EstadoInmueble){
+            entidad.Estado="Disponible";
+            entidad.EstadoInmueble=true;
+          } else
+          {
+            entidad.Estado="No Disponible";
+            entidad.EstadoInmueble=false;
+          }
+          contexto.Inmuebles.Update(entidad);
           contexto.SaveChanges();
-          return Ok(inmueble);
+          return Ok(new InmuebleView(entidad));
         }
         return BadRequest();
       }
@@ -148,6 +186,31 @@ namespace Zanche_Martin_InmobiliariaULP.Api
         return BadRequest(ex);
       }
     }
+    // {
+    //   try
+    //   {
+    //        if((bool)i.EstadoInmueble){
+    //         i.Estado="Disponible";
+    //       } else
+    //       {
+    //         i.Estado="No Disponible";
+    //       }
+        
+    //     Propietario p=contexto.Propietarios.Single(e => e.Email == User.Identity.Name);
+    //     if (contexto.Inmuebles.Include(e => e.Propietario).FirstOrDefault(e => e.Id == id && p.Email==User.Identity.Name) != null)
+    //     {
+    //       var inmueble = contexto.Inmuebles.Single(e => e.Id == id);
+    //       inmueble.Estado=i.Estado;
+    //       contexto.SaveChanges();
+    //       return Ok("Se actualizo estado a del inmueble id:" + inmueble.Id + " a "+'"'+inmueble.Estado+'"');
+    //     }
+    //     return BadRequest();
+    //   }
+    //   catch (Exception ex)
+    //   {
+    //     return BadRequest(ex);
+    //   }
+    // }
 
 
     // DELETE api/<controller>/5
