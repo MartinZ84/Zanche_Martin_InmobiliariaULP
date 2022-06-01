@@ -41,18 +41,8 @@ namespace Zanche_Martin_InmobiliariaULP.Api
 		{
 			try
 			{
-				// contexto.Inmuebles
-        //             .Include(x => x.Propietario)
-        //             .Where(x => x.Propietario.Nombre == "")//.ToList() => lista de inmuebles
-        //             .Select(x => x.Propietario)
-        //             .ToList();//lista de propietarios
-				var usuario = User.Identity.Name;
-				// contexto.Contratos.Include(x => x.Inquilino).Include(x => x.Inmueble).ThenInclude(x => x.Propietario)
-        //             .Where(c => c.Inmueble.Propietario.Email == usuario);
-				/*var res = contexto.Propietarios.Select(x => new { x.Nombre, x.Apellido, x.Email })
-                    .SingleOrDefault(x => x.Email == usuario);*/
-			//	return await contexto.Propietarios.SingleOrDefaultAsync(x => x.Email == usuario);
-        return await contexto.Propietarios.SingleOrDefaultAsync(x => x.Email == usuario);
+		  	var usuario = User.Identity.Name;
+	      return await contexto.Propietarios.SingleOrDefaultAsync(x => x.Email == usuario);
 			}
 			catch (Exception ex)
 			{
@@ -75,19 +65,7 @@ namespace Zanche_Martin_InmobiliariaULP.Api
 			}
 		}
 
-		// GET api/<controller>/GetAll
-		[HttpGet("GetAll")]
-		public async Task<IActionResult> GetAll()
-		{
-			try
-			{
-				return Ok(await contexto.Propietarios.ToListAsync());
-			}
-			catch (Exception ex)
-			{
-				return BadRequest(ex);
-			}
-		}
+	
 
 		// POST api/<controller>/login
 		[HttpPost("login")]
@@ -279,36 +257,9 @@ namespace Zanche_Martin_InmobiliariaULP.Api
 			}
 		}
 
-		// GET: api/Propietarios/test
-		[HttpGet("test")]
-		[AllowAnonymous]
-		public IActionResult Test()
-		{
-			try
-			{
-				return Ok("anduvo");
-			}
-			catch (Exception ex)
-			{
-				return BadRequest(ex);
-			}
-		}
 
-		// GET: api/Propietarios/test/5
-		[HttpGet("test/{codigo}")]
-		[AllowAnonymous]
-		public IActionResult Code(int codigo)
-		{
-			try
-			{
-				//StatusCodes.Status418ImATeapot //constantes con códigos
-				return StatusCode(codigo, new { Mensaje = "Anduvo", Error = false });
-			}
-			catch (Exception ex)
-			{
-				return BadRequest(ex);
-			}
-		}
+
+
 	}
 }
 //PARA RECIBIR LA IMAGEN DE BYTES DE Y GUARDARLA. lUEGO MANEJAR EL DOMINIO DESDE EL LADO DE LA ANDROID

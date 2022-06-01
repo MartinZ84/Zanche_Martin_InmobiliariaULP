@@ -37,12 +37,7 @@ namespace Zanche_Martin_InmobiliariaULP.Api
         var usuario = User.Identity.Name;
         var contratos=  (contexto.Contratos.Include(c=> c.Inmueble).Include(i=>i.Inquilino).Where(c => c.Inmueble.Propietario.Email == usuario)).ToListAsync();
 
-        // var contratos= (contexto.Contratos.Include(i => i.Inmueble).Where(i =>i.Inmueble.PropietarioId== usuario));
-        //.Select(x => new InmuebleView(x)));
-     
-        //cast to IQueryable<InmuebleView>
-        //var inmueblesView = inmuebles.Select(x => new InmuebleView(x));
-        //return Ok(inmueblesView);
+    
         return contratos != null ? Ok(await contratos) : NotFound();
       }
       catch (Exception ex)

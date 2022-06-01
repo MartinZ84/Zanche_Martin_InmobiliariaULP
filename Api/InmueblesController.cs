@@ -65,9 +65,7 @@ namespace Zanche_Martin_InmobiliariaULP.Api
       {
         var usuario = User.Identity.Name;
         var inmueble=contexto.Inmuebles.Include(e => e.Propietario).Where(e => e.Propietario.Email == usuario).Single(e => e.Id == id);
-      //   return Ok(contexto.Inmuebles.Include(e => e.Propietario).Where(e => e.Propietario.Email == usuario)//.Select(x => new InmuebleView(x)));
-      //  .Single(e => e.Id == id));
-      if(inmueble.Estado.Equals("Disponible")){
+        if(inmueble.Estado.Equals("Disponible")){
         inmueble.EstadoInmueble=true;
       } else
       {

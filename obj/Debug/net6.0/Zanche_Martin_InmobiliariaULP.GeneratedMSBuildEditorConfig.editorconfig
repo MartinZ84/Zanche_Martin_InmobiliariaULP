@@ -8,213 +8,213 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Zanche_Martin_InmobiliariaULP
 build_property.RootNamespace = Zanche_Martin_InmobiliariaULP
-build_property.ProjectDir = D:\Facultad ULP Martin\.Net\Zanche_Martin_InmobiliariaULP\
+build_property.ProjectDir = d:\Facultad ULP Martin\.Net\Zanche_Martin_InmobiliariaULP\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\Facultad ULP Martin\.Net\Zanche_Martin_InmobiliariaULP
+build_property.MSBuildProjectDirectory = d:\Facultad ULP Martin\.Net\Zanche_Martin_InmobiliariaULP
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Contratos/ContratosInmueble.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Contratos/ContratosInmueble.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhdG9zXENvbnRyYXRvc0lubXVlYmxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Contratos/ContratosNoVigentes.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Contratos/ContratosNoVigentes.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhdG9zXENvbnRyYXRvc05vVmlnZW50ZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Contratos/ContratosVigentes.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Contratos/ContratosVigentes.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhdG9zXENvbnRyYXRvc1ZpZ2VudGVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Contratos/Create.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Contratos/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhdG9zXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Contratos/CreateByInmId.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Contratos/CreateByInmId.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhdG9zXENyZWF0ZUJ5SW5tSWQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Contratos/Delete.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Contratos/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhdG9zXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Contratos/Details.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Contratos/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhdG9zXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Contratos/Edit.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Contratos/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhdG9zXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Contratos/Index.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Contratos/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhdG9zXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Contratos/Renovar.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Contratos/Renovar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhdG9zXFJlbm92YXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Home/Index.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Home/Privacy.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Home/Restringido.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Home/Restringido.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSZXN0cmluZ2lkby5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Inmuebles/BuscarInmuebles.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Inmuebles/BuscarInmuebles.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5tdWVibGVzXEJ1c2NhcklubXVlYmxlcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Inmuebles/Create.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Inmuebles/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5tdWVibGVzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Inmuebles/Delete.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Inmuebles/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5tdWVibGVzXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Inmuebles/Details.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Inmuebles/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5tdWVibGVzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Inmuebles/Edit.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Inmuebles/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5tdWVibGVzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Inmuebles/Index.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Inmuebles/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5tdWVibGVzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Inmuebles/InmDisp.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Inmuebles/InmDisp.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5tdWVibGVzXElubURpc3AuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Inmuebles/InmNoDisp.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Inmuebles/InmNoDisp.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5tdWVibGVzXElubU5vRGlzcC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Inmuebles/InmProp.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Inmuebles/InmProp.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5tdWVibGVzXElubVByb3AuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Inquilinos/Create.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Inquilinos/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5xdWlsaW5vc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Inquilinos/Delete.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Inquilinos/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5xdWlsaW5vc1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Inquilinos/Details.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Inquilinos/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5xdWlsaW5vc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Inquilinos/Edit.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Inquilinos/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5xdWlsaW5vc1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Inquilinos/Index.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Inquilinos/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5xdWlsaW5vc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Pagos/Create.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Pagos/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFnb3NcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Pagos/Delete.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Pagos/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFnb3NcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Pagos/Details.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Pagos/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFnb3NcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Pagos/Edit.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Pagos/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFnb3NcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Pagos/Index.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Pagos/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFnb3NcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Propietarios/Create.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Propietarios/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvcGlldGFyaW9zXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Propietarios/Delete.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Propietarios/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvcGlldGFyaW9zXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Propietarios/Details.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Propietarios/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvcGlldGFyaW9zXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Propietarios/Edit.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Propietarios/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvcGlldGFyaW9zXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Propietarios/Index.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Propietarios/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvcGlldGFyaW9zXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Shared/Error.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Shared/_Layout copy.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Shared/_Layout copy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQgY29weS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Shared/_Login.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Shared/_Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Shared/_ScriptsPartial.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Shared/_ScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9TY3JpcHRzUGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Shared/_ValidationScriptsPartial.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Usuarios/Create.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Usuarios/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Usuarios/Delete.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Usuarios/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Usuarios/Details.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Usuarios/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Usuarios/Edit.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Usuarios/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Usuarios/Index.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Usuarios/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Usuarios/Login.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Usuarios/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/_ViewImports.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/_ViewStart.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Shared/_Layout.cshtml]
+[d:/Facultad ULP Martin/.Net/Zanche_Martin_InmobiliariaULP/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-7973e6nj60
